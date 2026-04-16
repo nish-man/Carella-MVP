@@ -1,6 +1,7 @@
 {
   "version": 2,
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/ella" }
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/ella.js" },
+    { "src": "/(.*)", "dest": "/public/index.html" }
   ]
 }
