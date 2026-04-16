@@ -2,10 +2,11 @@
   "version": 2,
   "builds": [
     { "src": "api/ella.js", "use": "@vercel/node" },
-    { "src": "public/index.html", "use": "@vercel/static" }
+    { "src": "public/**", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/ella.js" },
+    { "src": "/logo.png", "dest": "/public/logo.png" },
     { "src": "/(.*)", "dest": "/public/index.html" }
   ]
 }
