@@ -1,12 +1,5 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "api/ella.js", "use": "@vercel/node" },
-    { "src": "public/**", "use": "@vercel/static" }
-  ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/ella.js" },
-    { "src": "/logo.png", "dest": "/public/logo.png" },
-    { "src": "/(.*)", "dest": "/public/index.html" }
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/ella" }
   ]
 }
