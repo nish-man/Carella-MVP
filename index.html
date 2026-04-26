@@ -671,97 +671,123 @@ function renderOB() {
     prog.appendChild(d);
   }
 
-  const titleHtml = step.title.replace(step.emph, `<em>${step.emph}</em>`);
-  let html = `<h2>${titleHtml}</h2><p class="sub">${step.sub}</p>`;
+  const titleHtml = step.title.replace(step.emph, '<em>' + step.emph + '</em>');
+  let html = '<h2>' + titleHtml + '</h2><p class="sub">' + step.sub + '</p>';
 
   if (step.type === 'about') {
-    html += `
-      <div class="ob-q">How old are you?</div>
-      <input class="ob-input" id="ob-age" type="number" min="16" max="99" placeholder="e.g. 34" value="${S.profile.age||''}">
-      <div class="ob-q">Gender</div>
-      <div class="pill-grid">${['Male','Female','Non-binary','Prefer not to say'].map(t=>`<div class="pill${S.profile.gender===t?' selected':''}" onclick="S.profile.gender='${t}';this.closest('.pill-grid').querySelectorAll('.pill').forEach(p=>p.classList.remove('selected'));this.classList.add('selected')">${t}</div>`).join('')}</div>
-      <div class="ob-q">Anything important in your driving history? <span>(tap to add)</span></div>
-      <div class="pill-grid">${['No claims bonus','Newly qualified','Licence points','Recent claim','Minor accident'].map(t=>`<div class="pill${(S.obSelected.dh||[]).includes(t)?' selected':''}" onclick="togglePill('dh','${t}',this)">${t}</div>`).join('')}</div>
-      <div class="ob-q">Where are you based?</div>
-      <input class="ob-input" id="ob-loc" placeholder="City or postcode" value="${S.profile.location_display||''}">
-      <div class="ob-q">Occupation <span>(helps identify salary sacrifice eligibility)</span></div>
-      <input class="ob-input" id="ob-occ" placeholder="e.g. NHS Doctor, Teacher, Director" value="${S.profile.occupation||''}">`;
+    const dhPills = ['No claims bonus','Newly qualified','Licence points','Recent claim','Minor accident'].map(function(t) {
+      const sel = (S.obSelected.dh||[]).includes(t) ? ' selected' : '';
+      return '<div class="pill' + sel + '" onclick="togglePill(\'dh\',\'' + t + '\',this)">' + t + '</div>';
+    }).join('');
+    const genderPills = ['Male','Female','Non-binary','Prefer not to say'].map(function(t) {
+      const sel = S.profile.gender === t ? ' selected' : '';
+      return '<div class="pill' + sel + '" onclick="S.profile.gender=\'' + t + '\';this.closest(\'.pill-grid\').querySelectorAll(\'.pill\').forEach(function(p){p.classList.remove(\'selected\')});this.classList.add(\'selected\')">' + t + '</div>';
+    }).join('');
+    html += '<div class="ob-q">How old are you?</div>';
+    html += '<input class="ob-input" id="ob-age" type="number" min="16" max="99" placeholder="e.g. 28" value="' + (S.profile.age||'') + '">';
+    html += '<div class="ob-q">Gender</div>';
+    html += '<div class="pill-grid">' + genderPills + '</div>';
+    html += '<div class="ob-q">Anything important in your driving history? <span>(tap to add)</span></div>';
+    html += '<div class="pill-grid">' + dhPills + '</div>';
+    html += '<div class="ob-q">Where are you based?</div>';
+    html += '<input class="ob-input" id="ob-loc" placeholder="City or postcode" value="' + (S.profile.location_display||'') + '">';
+    html += '<div class="ob-q">Occupation <span>(helps identify salary sacrifice eligibility)</span></div>';
+    html += '<input class="ob-input" id="ob-occ" placeholder="e.g. NHS Doctor, Teacher, Director" value="' + (S.profile.occupation||'') + '">';
+
   } else if (step.type === 'budget') {
     const sel = S.obSelected.finance || [];
-    html += `
-      <div class="ob-q">How do you plan to pay?</div>
-      <div class="pill-grid">${['Finance / PCP','Lease','Cash','Part-exchange','Salary sacrifice'].map(t=>`<div class="pill${sel.includes(t)?' selected':''}" onclick="togglePill('finance','${t}',this)">${t}</div>`).join('')}</div>
-      <div class="ob-q">Your budget</div>
-      ${(()=>{
-        const finSel = S.obSelected.finance||[];
-        const isFinance = finSel.some(f=>['Finance / PCP','Lease','Salary sacrifice'].includes(f));
-        const isPX = finSel.includes('Part-exchange');
-        if(isFinance) return \`
-          <div class="ob-q" style="margin-top:0">Monthly payment budget</div>
-          <div class="budget-display"><div class="budget-val" id="bd-mon">£\${(S.profile.monthly_max||400).toLocaleString()}/mo</div><div class="budget-sub">monthly budget</div></div>
-          <input type="range" min="100" max="1500" step="25" value="\${S.profile.monthly_max||400}" oninput="document.getElementById('bd-mon').textContent='£'+parseInt(this.value).toLocaleString()+'/mo';S.profile.monthly_max=parseInt(this.value)">
-          <div class="range-lbls"><span>£100/mo</span><span>£1,500/mo</span></div>
-          <div class="ob-q">Deposit</div>
-          <div class="budget-display"><div class="budget-val" id="bd-dep">£\${(S.profile.deposit||5000).toLocaleString()}</div><div class="budget-sub">upfront deposit</div></div>
-          <input type="range" min="0" max="20000" step="500" value="\${S.profile.deposit||5000}" oninput="document.getElementById('bd-dep').textContent='£'+parseInt(this.value).toLocaleString();S.profile.deposit=parseInt(this.value)">
-          <div class="range-lbls"><span>£0</span><span>£20,000</span></div>
-          <div class="ob-q">Contract length</div>
-          <div class="budget-display"><div class="budget-val" id="bd-con">\${S.profile.contract_months||24} months</div><div class="budget-sub">term length</div></div>
-          <input type="range" min="12" max="60" step="12" value="\${S.profile.contract_months||24}" oninput="document.getElementById('bd-con').textContent=parseInt(this.value)+' months';S.profile.contract_months=parseInt(this.value)">
-          <div class="range-lbls"><span>12 mo</span><span>60 mo</span></div>
-        \`;
-        return \`
-          <div class="budget-display"><div class="budget-val" id="bd-c">£\${(S.profile.budget_max||25000).toLocaleString()}</div><div class="budget-sub">maximum car price</div></div>
-          <input type="range" min="3000" max="100000" step="500" value="\${S.profile.budget_max||25000}" oninput="document.getElementById('bd-c').textContent='£'+parseInt(this.value).toLocaleString();S.profile.budget_max=parseInt(this.value)">
-          <div class="range-lbls"><span>£3k</span><span>£100k+</span></div>
-          \${isPX?\`<div class="ob-q">What car are you trading in?</div><input class="ob-input" id="ob-trade-in" placeholder="e.g. 2019 Ford Focus 1.0 EcoBoost" value="\${S.profile.trade_in_car||''}">\`:''}
-        \`;
-      })()}`;
+    const isFinance = sel.some(function(f) { return ['Finance / PCP','Lease','Salary sacrifice'].includes(f); });
+    const isPX = sel.includes('Part-exchange');
+    const financePills = ['Finance / PCP','Lease','Cash','Part-exchange','Salary sacrifice'].map(function(t) {
+      const s = sel.includes(t) ? ' selected' : '';
+      return '<div class="pill' + s + '" onclick="togglePill(\'finance\',\'' + t + '\',this);renderOB()">' + t + '</div>';
+    }).join('');
+    html += '<div class="ob-q">How do you plan to pay?</div>';
+    html += '<div class="pill-grid">' + financePills + '</div>';
+    if (isFinance) {
+      html += '<div class="ob-q">Monthly payment budget</div>';
+      html += '<div class="budget-display"><div class="budget-val" id="bd-mon">£' + (S.profile.monthly_max||400).toLocaleString() + '/mo</div><div class="budget-sub">monthly budget</div></div>';
+      html += '<input type="range" min="100" max="1500" step="25" value="' + (S.profile.monthly_max||400) + '" oninput="document.getElementById(\'bd-mon\').textContent=\'£\'+parseInt(this.value).toLocaleString()+\'/mo\';S.profile.monthly_max=parseInt(this.value)">';
+      html += '<div class="range-lbls"><span>£100/mo</span><span>£1,500/mo</span></div>';
+      html += '<div class="ob-q">Deposit</div>';
+      html += '<div class="budget-display"><div class="budget-val" id="bd-dep">£' + (S.profile.deposit||5000).toLocaleString() + '</div><div class="budget-sub">upfront deposit</div></div>';
+      html += '<input type="range" min="0" max="20000" step="500" value="' + (S.profile.deposit||5000) + '" oninput="document.getElementById(\'bd-dep\').textContent=\'£\'+parseInt(this.value).toLocaleString();S.profile.deposit=parseInt(this.value)">';
+      html += '<div class="range-lbls"><span>£0</span><span>£20,000</span></div>';
+      html += '<div class="ob-q">Contract length</div>';
+      html += '<div class="budget-display"><div class="budget-val" id="bd-con">' + (S.profile.contract_months||24) + ' months</div><div class="budget-sub">term length</div></div>';
+      html += '<input type="range" min="12" max="60" step="12" value="' + (S.profile.contract_months||24) + '" oninput="document.getElementById(\'bd-con\').textContent=parseInt(this.value)+\' months\';S.profile.contract_months=parseInt(this.value)">';
+      html += '<div class="range-lbls"><span>12 mo</span><span>60 mo</span></div>';
+    } else {
+      html += '<div class="ob-q">Max car price</div>';
+      html += '<div class="budget-display"><div class="budget-val" id="bd-c">£' + (S.profile.budget_max||25000).toLocaleString() + '</div><div class="budget-sub">maximum car price</div></div>';
+      html += '<input type="range" min="3000" max="100000" step="500" value="' + (S.profile.budget_max||25000) + '" oninput="document.getElementById(\'bd-c\').textContent=\'£\'+parseInt(this.value).toLocaleString();S.profile.budget_max=parseInt(this.value)">';
+      html += '<div class="range-lbls"><span>£3k</span><span>£100k+</span></div>';
+      if (isPX) {
+        html += '<div class="ob-q">What car are you trading in?</div>';
+        html += '<input class="ob-input" id="ob-trade-in" placeholder="e.g. 2019 Ford Focus 1.0 EcoBoost" value="' + (S.profile.trade_in_car||'') + '">';
+      }
+    }
+
   } else if (step.type === 'priorities') {
     const pri = S.profile.priorities || {};
-    const items = [
-      ['Brand','brand'],['Style','style'],['Performance','performance'],
-      ['Comfort','comfort'],['Fuel efficiency','efficiency'],['Price','price'],
-      ['Tech & connectivity','tech'],['Size','size'],['Reliability','reliability']
-    ];
-    html += `<div class="priority-list">` + items.map(([name, key]) => {
+    const items = [['Brand','brand'],['Style','style'],['Performance','performance'],['Comfort','comfort'],['Fuel efficiency','efficiency'],['Price','price'],['Tech & connectivity','tech'],['Size','size'],['Reliability','reliability']];
+    html += '<div class="priority-list">';
+    items.forEach(function(item) {
+      const name = item[0], key = item[1];
       const val = pri[key] || 5;
-      return `<div class="priority-row">
-        <div class="priority-lbl">${name}</div>
-        <input type="range" min="1" max="10" step="1" value="${val}" oninput="const k='${key}';const v=parseInt(this.value);S.profile.priorities=S.profile.priorities||{};S.profile.priorities[k]=v;this.nextElementSibling.textContent=v;if(k==='brand'){document.getElementById('brand-in').style.display=v>=7?'block':'none';}if(k==='size'){const st=document.getElementById('size-toggle');if(st)st.style.display=v>=7?'block':'none';}">
-        <div class="priority-val">${val}</div>
-      </div>
-      ${name==='Brand'?`<div id="brand-in" class="brand-expand" style="display:${(pri.brand||5)>=7?'block':'none'}"><input class="ob-input" placeholder="Which brands? e.g. BMW, Toyota, VW" value="${(S.profile.preferred_brands||[]).join(', ')}" oninput="S.profile.preferred_brands=this.value.split(',').map(s=>s.trim()).filter(Boolean)"></div>`:''}
-      ${name==='Size'?`<div id="size-toggle" class="brand-expand" style="display:${(pri.size||5)>=7?'block':'none'}"><div class="pill-grid"><div class="pill${S.profile.size_preference==='Bigger'?' selected':''}" onclick="S.profile.size_preference='Bigger';this.nextElementSibling.classList.remove('selected');this.classList.add('selected')">Bigger</div><div class="pill${S.profile.size_preference==='Smaller'?' selected':''}" onclick="S.profile.size_preference='Smaller';this.previousElementSibling.classList.remove('selected');this.classList.add('selected')">Smaller</div></div></div>`:''}
-    }).join('') + `</div>`;
+      html += '<div class="priority-row">';
+      html += '<div class="priority-lbl">' + name + '</div>';
+      html += '<input type="range" min="1" max="10" step="1" value="' + val + '" oninput="var k=\'' + key + '\',v=parseInt(this.value);S.profile.priorities=S.profile.priorities||{};S.profile.priorities[k]=v;this.nextElementSibling.textContent=v;if(k===\'brand\'){var bi=document.getElementById(\'brand-in\');if(bi)bi.style.display=v>=7?\'block\':\'none\';}if(k===\'size\'){var si=document.getElementById(\'size-toggle\');if(si)si.style.display=v>=7?\'block\':\'none\';}">';
+      html += '<div class="priority-val">' + val + '</div>';
+      html += '</div>';
+      if (name === 'Brand') {
+        const showBrand = (pri.brand||5) >= 7 ? 'block' : 'none';
+        html += '<div id="brand-in" class="brand-expand" style="display:' + showBrand + '">';
+        html += '<input class="ob-input" placeholder="Which brands? e.g. BMW, Toyota, VW" value="' + (S.profile.preferred_brands||[]).join(', ') + '" oninput="S.profile.preferred_brands=this.value.split(\',\').map(function(s){return s.trim()}).filter(Boolean)">';
+        html += '</div>';
+      }
+      if (name === 'Size') {
+        const showSize = (pri.size||5) >= 7 ? 'block' : 'none';
+        const biggerSel = S.profile.size_preference === 'Bigger' ? ' selected' : '';
+        const smallerSel = S.profile.size_preference === 'Smaller' ? ' selected' : '';
+        html += '<div id="size-toggle" class="brand-expand" style="display:' + showSize + '">';
+        html += '<div class="pill-grid">';
+        html += '<div class="pill' + biggerSel + '" onclick="S.profile.size_preference=\'Bigger\';this.nextElementSibling.classList.remove(\'selected\');this.classList.add(\'selected\')">Bigger</div>';
+        html += '<div class="pill' + smallerSel + '" onclick="S.profile.size_preference=\'Smaller\';this.previousElementSibling.classList.remove(\'selected\');this.classList.add(\'selected\')">Smaller</div>';
+        html += '</div></div>';
+      }
+    });
+    html += '</div>';
+
   } else if (step.type === 'prefs') {
-    const ct = S.obSelected.cartype || [], uc = S.obSelected.usecase || [], mh = S.obSelected.musthave || [];
-    html += `
-      <div class="ob-q">What type of car?</div>
-      <div class="pill-grid">${['Small city car','Hatchback','Estate','SUV / Crossover','Saloon','Coupe','Sports / Convertible','MPV'].map(t=>`<div class="pill${ct.includes(t)?' selected':''}" onclick="togglePill('cartype','${t}',this)">${t}</div>`).join('')}</div>
-      <div class="ob-q">What will you use it for?</div>
-      <div class="pill-grid">${['School run','City commuting','Motorway driving','Family trips','Dog-friendly','Towing / Caravan','Business travel','Learning to drive'].map(t=>`<div class="pill${uc.includes(t)?' selected':''}" onclick="togglePill('usecase','${t}',this)">${t}</div>`).join('')}</div>
-      <div class="ob-q">Any essential features?</div>
-      <div class="pill-grid">${['Heated seats','Parking cameras','Apple CarPlay','Keyless entry','Adaptive cruise','Panoramic sunroof','Tow bar','Head-up display'].map(t=>`<div class="pill${mh.includes(t)?' selected':''}" onclick="togglePill('musthave','${t}',this)">${t}</div>`).join('')}</div>`;
+    const ct = S.obSelected.cartype||[], uc = S.obSelected.usecase||[], mh = S.obSelected.musthave||[];
+    const types = ['Small city car','Hatchback','Estate','SUV / Crossover','Saloon','Coupe','Sports / Convertible','MPV'];
+    const uses  = ['School run','City commuting','Motorway driving','Family trips','Dog-friendly','Towing / Caravan','Business travel','Learning to drive'];
+    const feats = ['Heated seats','Parking cameras','Apple CarPlay','Keyless entry','Adaptive cruise','Panoramic sunroof','Tow bar','Head-up display'];
+    html += '<div class="ob-q">What type of car?</div>';
+    html += '<div class="pill-grid">' + types.map(function(t){return '<div class="pill'+(ct.includes(t)?' selected':'')+'" onclick="togglePill(\'cartype\',\''+t+'\',this)">'+t+'</div>';}).join('') + '</div>';
+    html += '<div class="ob-q">What will you use it for?</div>';
+    html += '<div class="pill-grid">' + uses.map(function(t){return '<div class="pill'+(uc.includes(t)?' selected':'')+'" onclick="togglePill(\'usecase\',\''+t+'\',this)">'+t+'</div>';}).join('') + '</div>';
+    html += '<div class="ob-q">Any essential features?</div>';
+    html += '<div class="pill-grid">' + feats.map(function(t){return '<div class="pill'+(mh.includes(t)?' selected':'')+'" onclick="togglePill(\'musthave\',\''+t+'\',this)">'+t+'</div>';}).join('') + '</div>';
+
   } else if (step.type === 'dream') {
-    // Dynamic dream car suggestions based on profile priorities
-    const pri = S.profile.priorities||{};
-    let dreamSuggestions = ['Ferrari Roma','Porsche 911','BMW M3','Range Rover Sport','Aston Martin DB11','Mercedes G-Class','Lamborghini Urus','Rolls-Royce Wraith'];
-    if((pri.performance||5)>=7) dreamSuggestions = ['Porsche 911','BMW M3','Ferrari Roma','Lamborghini Urus','McLaren Artura','Aston Martin Vantage','Alfa Romeo Giulia QV','AMG GT'];
-    else if((S.obSelected.cartype||[]).some(t=>t.includes('SUV')||t.includes('Family'))) dreamSuggestions = ['Range Rover Sport','Porsche Cayenne','Lamborghini Urus','BMW X5 M','Bentley Bentayga','Rolls-Royce Cullinan','Aston Martin DBX','Ferrari Purosangue'];
-    else if((pri.efficiency||5)>=7) dreamSuggestions = ['Tesla Model S','Porsche Taycan','BMW i7','Mercedes EQS','Lucid Air','Rivian R1S','Polestar 5','Audi RS e-tron GT'];
-    html += `
-      <p style="font-size:13px;color:var(--ink-faint);margin:-18px 0 14px;font-style:italic;font-family:var(--fd)">Ella uses this for aspirational comparisons.</p>
-      <div class="pill-grid">${dreamSuggestions.map(t=>`<div class="pill${(S.obSelected.dream||[]).includes(t)?' selected':''}"  " onclick="togglePill('dream','${t}',this)">${t}</div>`).join('')}</div>
-      <input class="ob-input" id="ob-dream-custom" placeholder="Or type your own dream car...">`;
+    const pri = S.profile.priorities || {};
+    var suggestions = ['Ferrari Roma','Porsche 911','BMW M3','Range Rover Sport','Aston Martin DB11','Mercedes G-Class','Lamborghini Urus','Rolls-Royce Wraith'];
+    if ((pri.performance||5) >= 7) suggestions = ['Porsche 911','BMW M3','Ferrari Roma','McLaren Artura','Aston Martin Vantage','Alfa Romeo Giulia QV','AMG GT','Lamborghini Huracán'];
+    else if ((S.obSelected.cartype||[]).some(function(t){return t.includes('SUV');})) suggestions = ['Range Rover Sport','Porsche Cayenne','Lamborghini Urus','Bentley Bentayga','Rolls-Royce Cullinan','Aston Martin DBX','Ferrari Purosangue','BMW X5 M'];
+    else if ((pri.efficiency||5) >= 7) suggestions = ['Tesla Model S','Porsche Taycan','BMW i7','Mercedes EQS','Lucid Air','Polestar 5','Audi RS e-tron GT','Rivian R1S'];
+    html += '<p style="font-size:13px;color:var(--ink-faint);margin:-18px 0 14px;font-style:italic;font-family:var(--fd)">Ella uses this for aspirational comparisons when relevant.</p>';
+    html += '<div class="pill-grid">' + suggestions.map(function(t){return '<div class="pill'+((S.obSelected.dream||[]).includes(t)?' selected':'')+'" onclick="togglePill(\'dream\',\''+t+'\',this)">'+t+'</div>';}).join('') + '</div>';
+    html += '<input class="ob-input" id="ob-dream-custom" placeholder="Or type your own..." style="margin-top:4px">';
   }
 
   const isLast = S.obStep === total - 1;
-  html += `<div class="ob-nav">
-    ${S.obStep>0?`<button class="btn-outline" onclick="obPrev()">← Back</button>`:''}
-    <button class="btn-outline" onclick="obNext(true)">Skip</button>
-    <button class="btn-solid${isLast?' meet-ella':''}" onclick="obNext()">${isLast?'Meet Ella →':'Continue →'}</button>
-  </div>`;
+  html += '<div class="ob-nav">';
+  if (S.obStep > 0) html += '<button class="btn-outline" onclick="obPrev()">← Back</button>';
+  html += '<button class="btn-outline" onclick="obNext(true)">Skip</button>';
+  html += '<button class="btn-solid' + (isLast ? ' meet-ella' : '') + '" onclick="obNext()">' + (isLast ? 'Meet Ella →' : 'Continue →') + '</button>';
+  html += '</div>';
 
   document.getElementById('ob-content').innerHTML = html;
 }
