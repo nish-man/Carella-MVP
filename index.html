@@ -590,8 +590,16 @@ async function sbAuth(path, body) {
 async function signUp(email, password) {
   const data = await sbAuth('/auth/v1/signup', { email, password, options: { emailRedirectTo: 'https://carella-mvp.vercel.app' } });
   if (data.error) throw new Error(data.error.message || data.msg || 'Sign up failed');
-  if (data.access_token) saveAuthSession(data);
-  return data;
+  if (data.access_token) {
+    // Email confirmation off — instantly logged in
+    saveAuthSession(data);
+    return { success: true, confirmed: true };
+  }
+  if (data.user && !data.access_token) {
+    // Email confirmation on — account created but needs confirmation
+    return { success: true, confirmed: false };
+  }
+  throw new Error('Sign up failed — please try again');
 }
 
 async function signIn(email, password) {
@@ -675,20 +683,36 @@ async function submitAuth() {
   errEl.style.display = 'none';
 
   try {
-    if (S.authMode === 'signup') await signUp(email, password);
-    else await signIn(email, password);
-    closeAuthModal();
-    // If came from upgrade flow, open Pro modal again
-    if (S.authContext === 'upgrade') setTimeout(() => openProModal(), 400);
-  } catch (e) {
-    // Handle email-confirmation-required case (not a real error)
-    if (e.message && e.message.includes('confirm')) {
-      errEl.style.cssText = 'display:block;background:#f0f9f4;border:1px solid #6fcf97;border-radius:8px;padding:10px 13px;font-size:13px;color:#155724;margin-bottom:14px';
-      errEl.textContent = '✓ Account created! Check your email to confirm, then sign in.';
+    if (S.authMode === 'signup') {
+      const result = await signUp(email, password);
+      if (result.confirmed) {
+        // Instantly logged in (email confirmation disabled)
+        updateLandingNav();
+        closeAuthModal();
+        if (S.authContext === 'upgrade') setTimeout(() => openProModal(), 400);
+      } else {
+        // Needs email confirmation
+        errEl.style.cssText = 'display:block;background:#f0faf4;border:1px solid #86efac;border-radius:8px;padding:12px 14px;font-size:13px;color:#166534;margin-bottom:14px';
+        errEl.textContent = '✓ Account created! Check your email for a confirmation link, then come back to sign in.';
+        // Switch to sign in mode after delay
+        setTimeout(function() {
+          S.authMode = 'signin';
+          document.getElementById('auth-title').textContent = 'Sign in';
+          document.getElementById('auth-btn-text').textContent = 'Sign in';
+          document.getElementById('auth-toggle-text').textContent = "Don't have an account?";
+          document.getElementById('auth-toggle-link').textContent = 'Sign up free';
+          errEl.textContent = 'Account created — sign in with your email and password.';
+        }, 3000);
+      }
     } else {
-      errEl.style.cssText = 'display:block;background:#fff0f0;border:1px solid #fca5a5;border-radius:8px;padding:10px 13px;font-size:13px;color:#dc2626;margin-bottom:14px';
-      errEl.textContent = e.message || 'Something went wrong. Please try again.';
+      await signIn(email, password);
+      updateLandingNav();
+      closeAuthModal();
+      if (S.authContext === 'upgrade') setTimeout(() => openProModal(), 400);
     }
+  } catch (e) {
+    errEl.style.cssText = 'display:block;background:#fff0f0;border:1px solid #fca5a5;border-radius:8px;padding:10px 13px;font-size:13px;color:#dc2626;margin-bottom:14px';
+    errEl.textContent = e.message || 'Something went wrong — please try again.';
   } finally {
     btnTxt.textContent = S.authMode === 'signup' ? 'Create account' : 'Sign in';
     if (btnEl) btnEl.disabled = false;
