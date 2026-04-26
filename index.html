@@ -341,6 +341,9 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
   .anb{padding:6px 10px;font-size:12px}
   .anb svg{display:none}
 }
+
+@keyframes meetEllaPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(31,110,85,.4)}50%{transform:scale(1.03);box-shadow:0 0 0 8px rgba(31,110,85,0)}}
+.btn-solid.meet-ella{animation:meetEllaPulse 2s ease infinite}
 </style>
 </head>
 <body>
@@ -601,6 +604,8 @@ function renderOB() {
     html += `
       <div class="ob-q">How old are you?</div>
       <input class="ob-input" id="ob-age" type="number" min="16" max="99" placeholder="e.g. 34" value="${S.profile.age||''}">
+      <div class="ob-q">Gender</div>
+      <div class="pill-grid">${['Male','Female','Non-binary','Prefer not to say'].map(t=>`<div class="pill${S.profile.gender===t?' selected':''}" onclick="S.profile.gender='${t}';this.closest('.pill-grid').querySelectorAll('.pill').forEach(p=>p.classList.remove('selected'));this.classList.add('selected')">${t}</div>`).join('')}</div>
       <div class="ob-q">Anything important in your driving history? <span>(tap to add)</span></div>
       <div class="pill-grid">${['No claims bonus','Newly qualified','Licence points','Recent claim','Minor accident'].map(t=>`<div class="pill${(S.obSelected.dh||[]).includes(t)?' selected':''}" onclick="togglePill('dh','${t}',this)">${t}</div>`).join('')}</div>
       <div class="ob-q">Where are you based?</div>
@@ -613,12 +618,31 @@ function renderOB() {
       <div class="ob-q">How do you plan to pay?</div>
       <div class="pill-grid">${['Finance / PCP','Lease','Cash','Part-exchange','Salary sacrifice'].map(t=>`<div class="pill${sel.includes(t)?' selected':''}" onclick="togglePill('finance','${t}',this)">${t}</div>`).join('')}</div>
       <div class="ob-q">Your budget</div>
-      <div class="budget-display">
-        <div class="budget-val" id="bd-c">£${(S.profile.budget_max||25000).toLocaleString()}</div>
-        <div class="budget-sub">maximum car price</div>
-      </div>
-      <div><input type="range" min="3000" max="100000" step="500" value="${S.profile.budget_max||25000}" oninput="document.getElementById('bd-c').textContent='£'+parseInt(this.value).toLocaleString();S.profile.budget_max=parseInt(this.value)"></div>
-      <div class="range-lbls"><span>£3k</span><span>£100k+</span></div>`;
+      ${(()=>{
+        const finSel = S.obSelected.finance||[];
+        const isFinance = finSel.some(f=>['Finance / PCP','Lease','Salary sacrifice'].includes(f));
+        const isPX = finSel.includes('Part-exchange');
+        if(isFinance) return \`
+          <div class="ob-q" style="margin-top:0">Monthly payment budget</div>
+          <div class="budget-display"><div class="budget-val" id="bd-mon">£\${(S.profile.monthly_max||400).toLocaleString()}/mo</div><div class="budget-sub">monthly budget</div></div>
+          <input type="range" min="100" max="1500" step="25" value="\${S.profile.monthly_max||400}" oninput="document.getElementById('bd-mon').textContent='£'+parseInt(this.value).toLocaleString()+'/mo';S.profile.monthly_max=parseInt(this.value)">
+          <div class="range-lbls"><span>£100/mo</span><span>£1,500/mo</span></div>
+          <div class="ob-q">Deposit</div>
+          <div class="budget-display"><div class="budget-val" id="bd-dep">£\${(S.profile.deposit||5000).toLocaleString()}</div><div class="budget-sub">upfront deposit</div></div>
+          <input type="range" min="0" max="20000" step="500" value="\${S.profile.deposit||5000}" oninput="document.getElementById('bd-dep').textContent='£'+parseInt(this.value).toLocaleString();S.profile.deposit=parseInt(this.value)">
+          <div class="range-lbls"><span>£0</span><span>£20,000</span></div>
+          <div class="ob-q">Contract length</div>
+          <div class="budget-display"><div class="budget-val" id="bd-con">\${S.profile.contract_months||24} months</div><div class="budget-sub">term length</div></div>
+          <input type="range" min="12" max="60" step="12" value="\${S.profile.contract_months||24}" oninput="document.getElementById('bd-con').textContent=parseInt(this.value)+' months';S.profile.contract_months=parseInt(this.value)">
+          <div class="range-lbls"><span>12 mo</span><span>60 mo</span></div>
+        \`;
+        return \`
+          <div class="budget-display"><div class="budget-val" id="bd-c">£\${(S.profile.budget_max||25000).toLocaleString()}</div><div class="budget-sub">maximum car price</div></div>
+          <input type="range" min="3000" max="100000" step="500" value="\${S.profile.budget_max||25000}" oninput="document.getElementById('bd-c').textContent='£'+parseInt(this.value).toLocaleString();S.profile.budget_max=parseInt(this.value)">
+          <div class="range-lbls"><span>£3k</span><span>£100k+</span></div>
+          \${isPX?\`<div class="ob-q">What car are you trading in?</div><input class="ob-input" id="ob-trade-in" placeholder="e.g. 2019 Ford Focus 1.0 EcoBoost" value="\${S.profile.trade_in_car||''}">\`:''}
+        \`;
+      })()}`;
   } else if (step.type === 'priorities') {
     const pri = S.profile.priorities || {};
     const items = [
@@ -630,10 +654,11 @@ function renderOB() {
       const val = pri[key] || 5;
       return `<div class="priority-row">
         <div class="priority-lbl">${name}</div>
-        <input type="range" min="1" max="10" step="1" value="${val}" oninput="const k='${key}';const v=parseInt(this.value);S.profile.priorities=S.profile.priorities||{};S.profile.priorities[k]=v;this.nextElementSibling.textContent=v;if(k==='brand'){document.getElementById('brand-in').style.display=v>=7?'block':'none';}">
+        <input type="range" min="1" max="10" step="1" value="${val}" oninput="const k='${key}';const v=parseInt(this.value);S.profile.priorities=S.profile.priorities||{};S.profile.priorities[k]=v;this.nextElementSibling.textContent=v;if(k==='brand'){document.getElementById('brand-in').style.display=v>=7?'block':'none';}if(k==='size'){const st=document.getElementById('size-toggle');if(st)st.style.display=v>=7?'block':'none';}">
         <div class="priority-val">${val}</div>
       </div>
-      ${name==='Brand'?`<div id="brand-in" class="brand-expand" style="display:${(pri.brand||5)>=7?'block':'none'}"><input class="ob-input" placeholder="Which brands? e.g. BMW, Toyota, VW" value="${(S.profile.preferred_brands||[]).join(', ')}" oninput="S.profile.preferred_brands=this.value.split(',').map(s=>s.trim()).filter(Boolean)"></div>`:''}`
+      ${name==='Brand'?`<div id="brand-in" class="brand-expand" style="display:${(pri.brand||5)>=7?'block':'none'}"><input class="ob-input" placeholder="Which brands? e.g. BMW, Toyota, VW" value="${(S.profile.preferred_brands||[]).join(', ')}" oninput="S.profile.preferred_brands=this.value.split(',').map(s=>s.trim()).filter(Boolean)"></div>`:''}
+      ${name==='Size'?`<div id="size-toggle" class="brand-expand" style="display:${(pri.size||5)>=7?'block':'none'}"><div class="pill-grid"><div class="pill${S.profile.size_preference==='Bigger'?' selected':''}" onclick="S.profile.size_preference='Bigger';this.nextElementSibling.classList.remove('selected');this.classList.add('selected')">Bigger</div><div class="pill${S.profile.size_preference==='Smaller'?' selected':''}" onclick="S.profile.size_preference='Smaller';this.previousElementSibling.classList.remove('selected');this.classList.add('selected')">Smaller</div></div></div>`:''}
     }).join('') + `</div>`;
   } else if (step.type === 'prefs') {
     const ct = S.obSelected.cartype || [], uc = S.obSelected.usecase || [], mh = S.obSelected.musthave || [];
@@ -645,9 +670,15 @@ function renderOB() {
       <div class="ob-q">Any essential features?</div>
       <div class="pill-grid">${['Heated seats','Parking cameras','Apple CarPlay','Keyless entry','Adaptive cruise','Panoramic sunroof','Tow bar','Head-up display'].map(t=>`<div class="pill${mh.includes(t)?' selected':''}" onclick="togglePill('musthave','${t}',this)">${t}</div>`).join('')}</div>`;
   } else if (step.type === 'dream') {
+    // Dynamic dream car suggestions based on profile priorities
+    const pri = S.profile.priorities||{};
+    let dreamSuggestions = ['Ferrari Roma','Porsche 911','BMW M3','Range Rover Sport','Aston Martin DB11','Mercedes G-Class','Lamborghini Urus','Rolls-Royce Wraith'];
+    if((pri.performance||5)>=7) dreamSuggestions = ['Porsche 911','BMW M3','Ferrari Roma','Lamborghini Urus','McLaren Artura','Aston Martin Vantage','Alfa Romeo Giulia QV','AMG GT'];
+    else if((S.obSelected.cartype||[]).some(t=>t.includes('SUV')||t.includes('Family'))) dreamSuggestions = ['Range Rover Sport','Porsche Cayenne','Lamborghini Urus','BMW X5 M','Bentley Bentayga','Rolls-Royce Cullinan','Aston Martin DBX','Ferrari Purosangue'];
+    else if((pri.efficiency||5)>=7) dreamSuggestions = ['Tesla Model S','Porsche Taycan','BMW i7','Mercedes EQS','Lucid Air','Rivian R1S','Polestar 5','Audi RS e-tron GT'];
     html += `
       <p style="font-size:13px;color:var(--ink-faint);margin:-18px 0 14px;font-style:italic;font-family:var(--fd)">Ella uses this for aspirational comparisons.</p>
-      <div class="pill-grid">${['Ferrari Roma','Porsche 911','BMW M3','Range Rover Sport','Aston Martin DB11','Mercedes G-Class','Lamborghini Urus','Rolls-Royce Wraith'].map(t=>`<div class="pill${(S.obSelected.dream||[]).includes(t)?' selected':''}" onclick="togglePill('dream','${t}',this)">${t}</div>`).join('')}</div>
+      <div class="pill-grid">${dreamSuggestions.map(t=>`<div class="pill${(S.obSelected.dream||[]).includes(t)?' selected':''}"  " onclick="togglePill('dream','${t}',this)">${t}</div>`).join('')}</div>
       <input class="ob-input" id="ob-dream-custom" placeholder="Or type your own dream car...">`;
   }
 
@@ -655,7 +686,7 @@ function renderOB() {
   html += `<div class="ob-nav">
     ${S.obStep>0?`<button class="btn-outline" onclick="obPrev()">← Back</button>`:''}
     <button class="btn-outline" onclick="obNext(true)">Skip</button>
-    <button class="btn-solid" onclick="obNext()">${isLast?'Meet Ella →':'Continue →'}</button>
+    <button class="btn-solid${isLast?' meet-ella':''}" onclick="obNext()">${isLast?'Meet Ella →':'Continue →'}</button>
   </div>`;
 
   document.getElementById('ob-content').innerHTML = html;
@@ -679,6 +710,8 @@ function obNext(skip = false) {
       S.profile.occupation = document.getElementById('ob-occ')?.value || '';
     } else if (step.type === 'budget') {
       S.profile.finance_method = S.obSelected.finance || [];
+      const tradeIn = document.getElementById('ob-trade-in')?.value;
+      if (tradeIn) S.profile.trade_in_car = tradeIn;
     } else if (step.type === 'prefs') {
       S.profile.car_types = S.obSelected.cartype || [];
       S.profile.use_cases = S.obSelected.usecase || [];
@@ -731,7 +764,7 @@ function addEllaMsg(text) {
   const c = document.getElementById('chat-msgs');
   const d = document.createElement('div');
   d.className = 'chat-msg ella';
-  d.innerHTML = `<div class="mav eav">E</div><div class="bubble ebub">${text}</div>`;
+  d.innerHTML = `<div class="mav eav">E</div><div style="flex:1"><div class="bubble ebub">${text}</div><div style="display:flex;gap:8px;margin-top:4px;padding-left:2px"><button onclick="this.style.color='var(--green)';this.nextElementSibling.style.color='var(--ink-faint)'" style="background:none;border:none;cursor:pointer;font-size:13px;color:var(--ink-faint);transition:color .15s" title="Helpful">👍</button><button onclick="this.style.color='var(--red,#ef4444)';this.previousElementSibling.style.color='var(--ink-faint)'" style="background:none;border:none;cursor:pointer;font-size:13px;color:var(--ink-faint);transition:color .15s" title="Not helpful">👎</button></div></div>`;
   c.appendChild(d);
   c.scrollTop = c.scrollHeight;
 }
@@ -882,12 +915,21 @@ function makeCard(c, i) {
     <div class="car-body">
       <div class="car-title">${c.year} ${c.make} ${c.model}</div>
       <div class="car-variant">${c.variant}</div>
-      <div class="car-price"><em>£</em>${c.price.toLocaleString()}</div>
+      <div class="car-price" style="display:flex;align-items:baseline;gap:10px">
+        <span><em>£</em>${c.price.toLocaleString()}</span>
+        ${(()=>{
+          const ratio = c.price / (c.price * (c.new_or_used==='new' ? 1 : 0.95));
+          const score = c.score||50;
+          if(score>=75) return '<span style="font-size:10px;font-weight:700;color:var(--green);background:var(--green-tint);padding:2px 7px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em;font-family:var(--fb)">Good price</span>';
+          if(score>=55) return '<span style="font-size:10px;font-weight:700;color:var(--ink-mute);background:var(--cream);padding:2px 7px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em;font-family:var(--fb);border:1px solid var(--hair)">Fair</span>';
+          return '';
+        })()}
+      </div>
       <div class="cmeta">
         <div class="mpill">${fi} ${c.fuel}</div>
         <div class="mpill">⚙ ${c.transmission}</div>
-        <div class="mpill">📍 ${c.location}</div>
-        <div class="mpill">🛣 ${c.mileage > 0 ? c.mileage.toLocaleString() + ' mi' : 'New'}</div>
+        <div class="mpill">📍 ${c.location}${S.profile.location_display && c.region ? ' · ' + (c.region === S.profile.location_display ? 'Local' : 'Nearby') : ''}</div>
+        <div class="mpill">🛣 ${c.mileage > 0 ? c.mileage.toLocaleString() + ' mi (~' + Math.round(c.mileage / Math.max(new Date().getFullYear() - c.year, 1) / 1000) + 'k/yr)' : 'Brand new'}</div>
       </div>
       <div class="tco-row">
         <div class="tco-lbl">Est. monthly</div>
