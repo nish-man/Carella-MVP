@@ -340,6 +340,7 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
   .app-hdr .brand-mark{font-size:18px}
   .anb{padding:6px 10px;font-size:12px}
   .anb svg{display:none}
+  #how .grid-3{grid-template-columns:1fr}
 }
 
 @keyframes meetEllaPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(31,110,85,.4)}50%{transform:scale(1.03);box-shadow:0 0 0 8px rgba(31,110,85,0)}}
@@ -424,6 +425,73 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
       Your data stays private
     </div>
   </div>
+
+  <!-- ═══════ HOW IT WORKS ═══════ -->
+  <section id="how" style="padding:72px 40px;background:var(--paper);border-top:1px solid var(--hair)">
+    <div style="max-width:900px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:56px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--green);margin-bottom:12px">How it works</div>
+        <h2 style="font-family:var(--fd);font-size:clamp(32px,4vw,48px);font-weight:500;letter-spacing:-.02em;line-height:1.1">Find your car in <em style="font-style:italic;color:var(--green)">minutes,</em> not months</h2>
+        <p style="font-size:16px;color:var(--ink-mute);margin-top:14px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6">Carella replaces 50+ days of research with one conversation with Ella.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;margin-bottom:56px">
+        <div style="text-align:center;padding:28px 20px">
+          <div style="width:52px;height:52px;background:var(--green-tint);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:24px">👤</div>
+          <div style="font-family:var(--fd);font-size:13px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Step 1</div>
+          <h3 style="font-family:var(--fd);font-size:20px;font-weight:500;margin-bottom:10px;letter-spacing:-.01em">Build your profile</h3>
+          <p style="font-size:14px;color:var(--ink-mute);line-height:1.6">A quick 5-screen quiz captures your age, budget, finance method, priorities and dream car. Takes under 90 seconds.</p>
+        </div>
+        <div style="text-align:center;padding:28px 20px">
+          <div style="width:52px;height:52px;background:var(--green-tint);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:24px">💬</div>
+          <div style="font-family:var(--fd);font-size:13px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Step 2</div>
+          <h3 style="font-family:var(--fd);font-size:20px;font-weight:500;margin-bottom:10px;letter-spacing:-.01em">Tell Ella what you need</h3>
+          <p style="font-size:14px;color:var(--ink-mute);line-height:1.6">Just talk naturally. "Reliable family SUV, school run, under £22k." Ella already knows your profile — no repeated questions.</p>
+        </div>
+        <div style="text-align:center;padding:28px 20px">
+          <div style="width:52px;height:52px;background:var(--green-tint);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:24px">🔍</div>
+          <div style="font-family:var(--fd);font-size:13px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Step 3</div>
+          <h3 style="font-family:var(--fd);font-size:20px;font-weight:500;margin-bottom:10px;letter-spacing:-.01em">Ella searches the UK market</h3>
+          <p style="font-size:14px;color:var(--ink-mute);line-height:1.6">Real listings from AutoTrader. Ella filters, scores and ranks by budget fit, insurance group, MOT history and TCO — in seconds.</p>
+        </div>
+        <div style="text-align:center;padding:28px 20px">
+          <div style="width:52px;height:52px;background:var(--green-tint);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:24px">🚗</div>
+          <div style="font-family:var(--fd);font-size:13px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Step 4</div>
+          <h3 style="font-family:var(--fd);font-size:20px;font-weight:500;margin-bottom:10px;letter-spacing:-.01em">Own the right car</h3>
+          <p style="font-size:14px;color:var(--ink-mute);line-height:1.6">Save shortlisted cars to your Garage, view full specs and MOT history, then click straight through to the listing. Carella never takes a commission.</p>
+        </div>
+      </div>
+
+      <!-- VS comparison -->
+      <div style="background:var(--cream);border:1px solid var(--hair);border-radius:20px;padding:36px;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center">
+        <div>
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);margin-bottom:16px">Without Carella</div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-mute)"><span style="color:#ef4444;font-size:16px">✗</span> 50+ days of research across 5 platforms</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-mute)"><span style="color:#ef4444;font-size:16px">✗</span> Advice from dealers paid to upsell you</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-mute)"><span style="color:#ef4444;font-size:16px">✗</span> Hidden running costs — insurance, tax, fuel</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-mute)"><span style="color:#ef4444;font-size:16px">✗</span> Overpaying by £1,200+ on average</div>
+          </div>
+        </div>
+        <div style="font-family:var(--fd);font-size:28px;font-weight:500;color:var(--ink-faint);text-align:center">vs</div>
+        <div>
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:16px">With Carella</div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink)"><span style="color:var(--green);font-size:16px">✓</span> One conversation. Results in seconds.</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink)"><span style="color:var(--green);font-size:16px">✓</span> Ella is impartial — no commissions, ever</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink)"><span style="color:var(--green);font-size:16px">✓</span> Full TCO shown upfront on every result</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink)"><span style="color:var(--green);font-size:16px">✓</span> Pay fair price — data-backed, not dealer-led</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:40px">
+        <button class="signup-btn primary" style="padding:14px 36px;font-size:15px" onclick="startOnboarding()">Try Ella free →</button>
+        <p style="font-size:12px;color:var(--ink-faint);margin-top:10px">No credit card · Free forever · 3 searches/day</p>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <!-- ═══════════════════ ONBOARDING ═══════════════════ -->
@@ -550,249 +618,58 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
 </div>
 
 <script>
-// ═══════════════════ CONFIG ═══════════════════
-const SUPA_URL  = 'https://bhrbrbrawrzcpuwkzwjz.supabase.co';
-const SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJocmJyYnJhd3J6Y3B1d2t6d2p6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNDY3NTUsImV4cCI6MjA5MjcyMjc1NX0.17enpmTpcgUwA7EA_RvHiH4XdKNZn9yAXcNmoPZ9o-k';
-
 // ═══════════════════ STATE ═══════════════════
 const S = {
-  sid:          `s_${Date.now()}_${Math.random().toString(36).slice(2)}`,
-  profile:      { budget_max: 25000 },
-  results:      [],
-  garage:       [],
-  loading:      false,
-  searchCount:  0,
-  isPro:        false,
-  pendingSearch:null,
-  obStep:       0,
-  obSelected:   {},
-  authToken:    localStorage.getItem('sb_token') || null,
-  userId:       localStorage.getItem('sb_uid')   || null,
-  authMode:     'signin', // 'signin' | 'signup'
+  sid: `s_${Date.now()}_${Math.random().toString(36).slice(2)}`,
+  profile: { budget_max: 25000 },
+  results: [],
+  garage: JSON.parse(localStorage.getItem('cg')||'[]'),
+  loading: false,
+  searchCount: 0,
+  isPro: false,
+  pendingSearch: null,
+  obStep: 0,
+  obSelected: {},
+  authToken: localStorage.getItem('sb_token') || null,
+  userId: localStorage.getItem('sb_uid') || null,
+  userEmail: localStorage.getItem('sb_email') || null,
 };
 const MAX_FREE = 3;
 const today = new Date().toDateString();
-if (localStorage.getItem('csd') !== today) { S.searchCount=0; localStorage.setItem('csd',today); }
-else S.searchCount = parseInt(localStorage.getItem('csc')||'0');
-
-// ═══════════════════ SUPABASE AUTH ═══════════════════
-async function sbAuth(path, body) {
-  const r = await fetch(`${SUPA_URL}${path}`, {
-    method: 'POST',
-    headers: { 'Content-Type':'application/json', 'apikey': SUPA_ANON },
-    body: JSON.stringify(body)
-  });
-  return r.json();
-}
-
-async function signUp(email, password) {
-  const data = await sbAuth('/auth/v1/signup', { email, password });
-  if (data.error) throw new Error(data.error.message || data.msg || 'Sign up failed');
-  if (data.access_token) saveAuthSession(data);
-  return data;
-}
-
-async function signIn(email, password) {
-  const data = await sbAuth('/auth/v1/token?grant_type=password', { email, password });
-  if (data.error) throw new Error(data.error.message || data.error_description || 'Sign in failed');
-  saveAuthSession(data);
-  return data;
-}
-
-async function signOut() {
-  localStorage.removeItem('sb_token');
-  localStorage.removeItem('sb_uid');
-  localStorage.removeItem('sb_email');
-  S.authToken = null; S.userId = null; S.isPro = false;
-  S.garage = [];
-  updateAuthUI();
-  updateGCBadge();
-}
-
-function saveAuthSession(data) {
-  S.authToken = data.access_token;
-  S.userId    = data.user?.id;
-  localStorage.setItem('sb_token',  data.access_token);
-  localStorage.setItem('sb_uid',    data.user?.id || '');
-  localStorage.setItem('sb_email',  data.user?.email || '');
-  updateAuthUI();
-  checkProStatus();
-  loadGarageFromDB();
-}
-
-function updateAuthUI() {
-  const email = localStorage.getItem('sb_email');
-  const av = document.getElementById('user-avatar');
-  if (!av) return;
-  if (S.authToken && email) {
-    av.textContent = email[0].toUpperCase();
-    av.title = email;
-    av.onclick = () => showUserMenu();
-  } else {
-    av.textContent = '?';
-    av.title = 'Sign in';
-    av.onclick = () => showAuthModal('signin');
-  }
-}
-
-function showAuthModal(mode='signin', context='') {
-  S.authMode = mode;
-  S.authContext = context;
-  document.getElementById('auth-title').textContent     = mode === 'signup' ? 'Create account' : 'Sign in';
-  document.getElementById('auth-subtitle').textContent  = context === 'upgrade'
-    ? 'Create a free account, then upgrade to Pro.' 
-    : mode === 'signup' ? 'Free forever. No credit card needed.' : 'Welcome back.';
-  document.getElementById('auth-btn-text').textContent  = mode === 'signup' ? 'Create account' : 'Sign in';
-  document.getElementById('auth-toggle-text').textContent = mode === 'signup' ? 'Already have an account?' : "Don't have an account?";
-  document.getElementById('auth-toggle-link').textContent = mode === 'signup' ? 'Sign in' : 'Sign up free';
-  document.getElementById('auth-error').style.display  = 'none';
-  document.getElementById('auth-email').value    = '';
-  document.getElementById('auth-password').value = '';
-  document.getElementById('auth-modal').classList.add('active');
-  setTimeout(() => document.getElementById('auth-email').focus(), 100);
-}
-
-function closeAuthModal() { document.getElementById('auth-modal').classList.remove('active'); }
-function toggleAuthMode() {
-  S.authMode = S.authMode === 'signin' ? 'signup' : 'signin';
-  showAuthModal(S.authMode, S.authContext || '');
-}
-
-async function submitAuth() {
-  const email    = document.getElementById('auth-email').value.trim();
-  const password = document.getElementById('auth-password').value;
-  const errEl    = document.getElementById('auth-error');
-  const btnEl    = document.getElementById('auth-submit-btn');
-  const btnTxt   = document.getElementById('auth-btn-text');
-
-  if (!email || !password) { errEl.textContent='Please enter email and password'; errEl.style.display='block'; return; }
-  if (password.length < 6) { errEl.textContent='Password must be at least 6 characters'; errEl.style.display='block'; return; }
-
-  btnTxt.textContent = S.authMode === 'signup' ? 'Creating account…' : 'Signing in…';
-  if (btnEl) btnEl.disabled = true;
-  errEl.style.display = 'none';
-
-  try {
-    if (S.authMode === 'signup') await signUp(email, password);
-    else await signIn(email, password);
-    closeAuthModal();
-    // If came from upgrade flow, open Pro modal again
-    if (S.authContext === 'upgrade') setTimeout(() => openProModal(), 400);
-  } catch (e) {
-    errEl.textContent = e.message;
-    errEl.style.display = 'block';
-  } finally {
-    btnTxt.textContent = S.authMode === 'signup' ? 'Create account' : 'Sign in';
-    if (btnEl) btnEl.disabled = false;
-  }
-}
-
-function showUserMenu() {
-  const email = localStorage.getItem('sb_email') || '';
-  const isPro = S.isPro;
-  // Simple inline menu
-  const existing = document.getElementById('user-menu');
-  if (existing) { existing.remove(); return; }
-  const menu = document.createElement('div');
-  menu.id = 'user-menu';
-  menu.style.cssText = 'position:fixed;top:56px;right:16px;background:var(--paper);border:1px solid var(--hair);border-radius:var(--r);padding:8px;min-width:200px;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,.1)';
-  menu.innerHTML = `
-    <div style="padding:8px 10px;font-size:12px;color:var(--ink-mute);border-bottom:1px solid var(--hair);margin-bottom:4px">${email}</div>
-    ${isPro ? `<div style="padding:6px 10px;font-size:12px;color:var(--green);font-weight:600">⚡ Pro subscriber</div>` : ''}
-    ${isPro ? `<button onclick="openBillingPortal();document.getElementById('user-menu')?.remove()" style="width:100%;text-align:left;padding:8px 10px;background:none;border:none;font-size:13px;color:var(--ink-soft);cursor:pointer;border-radius:6px;font-family:var(--fb)">Manage subscription</button>` : `<button onclick="openProModal();document.getElementById('user-menu')?.remove()" style="width:100%;text-align:left;padding:8px 10px;background:none;border:none;font-size:13px;color:var(--green);cursor:pointer;border-radius:6px;font-weight:600;font-family:var(--fb)">⚡ Upgrade to Pro</button>`}
-    <button onclick="signOut();document.getElementById('user-menu')?.remove()" style="width:100%;text-align:left;padding:8px 10px;background:none;border:none;font-size:13px;color:var(--ink-soft);cursor:pointer;border-radius:6px;font-family:var(--fb)">Sign out</button>
-  `;
-  document.body.appendChild(menu);
-  setTimeout(() => document.addEventListener('click', function h(e) { if (!menu.contains(e.target) && e.target.id !== 'user-avatar') { menu.remove(); document.removeEventListener('click',h); } }), 100);
-}
-
-// ═══════════════════ STRIPE ═══════════════════
-async function startStripeCheckout() {
-  if (!S.authToken) { showAuthModal('signup','upgrade'); return; }
-  const txt = document.getElementById('stripe-btn-text');
-  const btn = document.getElementById('stripe-upgrade-btn');
-  txt.textContent = 'Opening checkout…';
-  btn.disabled = true;
-  try {
-    const resp = await fetch('/api/stripe/checkout', {
-      method: 'POST',
-      headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${S.authToken}` },
-      body: JSON.stringify({})
-    });
-    const data = await resp.json();
-    if (data.url) { window.location.href = data.url; }
-    else { txt.textContent = data.error || 'Something went wrong'; btn.disabled = false; }
-  } catch(e) { txt.textContent = 'Try again'; btn.disabled = false; }
-}
-
-async function openBillingPortal() {
-  if (!S.authToken) return;
-  const resp = await fetch('/api/stripe/portal', {
-    method:'POST', headers:{'Authorization':`Bearer ${S.authToken}`}
-  });
-  const data = await resp.json();
-  if (data.url) window.open(data.url,'_blank');
-}
-
-async function checkProStatus() {
-  if (!S.authToken) return;
-  try {
-    const resp = await fetch('/api/pro/status', { headers:{'Authorization':`Bearer ${S.authToken}`} });
-    const data = await resp.json();
-    S.isPro = data.is_pro;
-    if (S.isPro) document.getElementById('ses-info').innerHTML = '⚡ Pro · Unlimited searches · <a onclick="openBillingPortal()">Manage</a>';
-  } catch(e) {}
-}
-
-// Check Stripe return
-(function checkStripeReturn() {
-  const p = new URLSearchParams(window.location.search);
-  if (p.get('upgraded') === 'true') {
-    S.isPro = true;
-    window.history.replaceState({},'',window.location.pathname);
-    setTimeout(() => addEllaMsg("Welcome to Carella Pro! ⚡ You now have unlimited searches, full MOT history, and price drop alerts."), 800);
-  }
-})();
-
-// ═══════════════════ GARAGE (DB-backed) ═══════════════════
-async function loadGarageFromDB() {
-  if (!S.authToken) {
-    S.garage = JSON.parse(localStorage.getItem('cg')||'[]');
-    updateGCBadge();
-    return;
-  }
-  try {
-    const resp = await fetch('/api/garage', { headers:{'Authorization':`Bearer ${S.authToken}`} });
-    const data = await resp.json();
-    S.garage = (data || []).map(row => row.listing_snapshot || row);
-    localStorage.setItem('cg', JSON.stringify(S.garage));
-    updateGCBadge();
-  } catch(e) {
-    S.garage = JSON.parse(localStorage.getItem('cg')||'[]');
-    updateGCBadge();
-  }
+if (localStorage.getItem('csd') !== today) {
+  S.searchCount = 0;
+  localStorage.setItem('csd', today);
+} else {
+  S.searchCount = parseInt(localStorage.getItem('csc') || '0');
 }
 
 // ═══════════════════ ONBOARDING ═══════════════════
 const OB_STEPS = [
-  { title:'About you',           emph:'you',           sub:'Quick background so Ella is personalised from the start.', type:'about' },
-  { title:'Your budget',         emph:'budget',        sub:'How you plan to pay, and what you can spend.',             type:'budget' },
-  { title:'What matters to you?',emph:'matters',       sub:'Rate each 1–10. Ella weights your results accordingly.',   type:'priorities' },
-  { title:'Car preferences',     emph:'preferences',   sub:'Body type, use cases and must-haves.',                     type:'prefs' },
-  { title:'The fun one',         emph:'fun',           sub:'Money no object — what car would you buy?',               type:'dream' },
+  { title: 'About you', emph: 'you', sub: 'Quick background so Ella is personalised from the start.', type: 'about' },
+  { title: 'Your budget', emph: 'budget', sub: 'How you plan to pay, and what you can spend.', type: 'budget' },
+  { title: 'What matters to you?', emph: 'matters', sub: 'Rate each 1–10. Ella weights your results accordingly.', type: 'priorities' },
+  { title: 'Car preferences', emph: 'preferences', sub: 'Body type, use cases and must-haves.', type: 'prefs' },
+  { title: 'The fun one', emph: 'fun', sub: 'Money no object — what car would you buy?', type: 'dream' },
 ];
 
 function startOnboarding(pending) {
-  S.pendingSearch = pending || null; S.obStep = 0; S.obSelected = {};
+  S.pendingSearch = pending || null;
+  S.obStep = 0;
+  S.obSelected = {};
   document.getElementById('onboarding').classList.add('active');
   renderOB();
 }
 
 function renderOB() {
-  const step = OB_STEPS[S.obStep], total = OB_STEPS.length;
+  const step = OB_STEPS[S.obStep];
+  const total = OB_STEPS.length;
   const prog = document.getElementById('ob-prog');
   prog.innerHTML = '';
-  for (let i=0; i<total; i++) { const d=document.createElement('div'); d.className='ob-dot'+(i<=S.obStep?' done':''); prog.appendChild(d); }
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('div');
+    d.className = 'ob-dot' + (i <= S.obStep ? ' done' : '');
+    prog.appendChild(d);
+  }
 
   const titleHtml = step.title.replace(step.emph, `<em>${step.emph}</em>`);
   let html = `<h2>${titleHtml}</h2><p class="sub">${step.sub}</p>`;
@@ -800,7 +677,7 @@ function renderOB() {
   if (step.type === 'about') {
     html += `
       <div class="ob-q">How old are you?</div>
-      <input class="ob-input" id="ob-age" type="number" min="16" max="99" placeholder="e.g. 28" value="${S.profile.age||''}">
+      <input class="ob-input" id="ob-age" type="number" min="16" max="99" placeholder="e.g. 34" value="${S.profile.age||''}">
       <div class="ob-q">Gender</div>
       <div class="pill-grid">${['Male','Female','Non-binary','Prefer not to say'].map(t=>`<div class="pill${S.profile.gender===t?' selected':''}" onclick="S.profile.gender='${t}';this.closest('.pill-grid').querySelectorAll('.pill').forEach(p=>p.classList.remove('selected'));this.classList.add('selected')">${t}</div>`).join('')}</div>
       <div class="ob-q">Anything important in your driving history? <span>(tap to add)</span></div>
@@ -811,47 +688,54 @@ function renderOB() {
       <input class="ob-input" id="ob-occ" placeholder="e.g. NHS Doctor, Teacher, Director" value="${S.profile.occupation||''}">`;
   } else if (step.type === 'budget') {
     const sel = S.obSelected.finance || [];
-    const isFinance = sel.some(f => ['Finance / PCP','Lease','Salary sacrifice'].includes(f));
-    const isPX = sel.includes('Part-exchange');
     html += `
       <div class="ob-q">How do you plan to pay?</div>
-      <div class="pill-grid">${['Finance / PCP','Lease','Cash','Part-exchange','Salary sacrifice'].map(t=>`<div class="pill${sel.includes(t)?' selected':''}" onclick="togglePill('finance','${t}',this);renderOB()">${t}</div>`).join('')}</div>`;
-    if (isFinance) {
-      html += `
-        <div class="ob-q">Monthly payment budget</div>
-        <div class="budget-display"><div class="budget-val" id="bd-mon">£${(S.profile.monthly_max||400).toLocaleString()}/mo</div><div class="budget-sub">monthly budget</div></div>
-        <input type="range" min="100" max="1500" step="25" value="${S.profile.monthly_max||400}" oninput="document.getElementById('bd-mon').textContent='£'+parseInt(this.value).toLocaleString()+'/mo';S.profile.monthly_max=parseInt(this.value)">
-        <div class="range-lbls"><span>£100/mo</span><span>£1,500/mo</span></div>
-        <div class="ob-q">Deposit</div>
-        <div class="budget-display"><div class="budget-val" id="bd-dep">£${(S.profile.deposit||5000).toLocaleString()}</div><div class="budget-sub">upfront deposit</div></div>
-        <input type="range" min="0" max="20000" step="500" value="${S.profile.deposit||5000}" oninput="document.getElementById('bd-dep').textContent='£'+parseInt(this.value).toLocaleString();S.profile.deposit=parseInt(this.value)">
-        <div class="range-lbls"><span>£0</span><span>£20,000</span></div>
-        <div class="ob-q">Contract length</div>
-        <div class="budget-display"><div class="budget-val" id="bd-con">${S.profile.contract_months||24} months</div><div class="budget-sub">term length</div></div>
-        <input type="range" min="12" max="60" step="12" value="${S.profile.contract_months||24}" oninput="document.getElementById('bd-con').textContent=parseInt(this.value)+' months';S.profile.contract_months=parseInt(this.value)">
-        <div class="range-lbls"><span>12 mo</span><span>60 mo</span></div>`;
-    } else {
-      html += `
-        <div class="ob-q">Max car price</div>
-        <div class="budget-display"><div class="budget-val" id="bd-c">£${(S.profile.budget_max||25000).toLocaleString()}</div><div class="budget-sub">maximum car price</div></div>
-        <input type="range" min="3000" max="100000" step="500" value="${S.profile.budget_max||25000}" oninput="document.getElementById('bd-c').textContent='£'+parseInt(this.value).toLocaleString();S.profile.budget_max=parseInt(this.value)">
-        <div class="range-lbls"><span>£3k</span><span>£100k+</span></div>
-        ${isPX ? `<div class="ob-q">What car are you trading in?</div><input class="ob-input" id="ob-trade-in" placeholder="e.g. 2019 Ford Focus 1.0 EcoBoost" value="${S.profile.trade_in_car||''}">` : ''}`;
-    }
+      <div class="pill-grid">${['Finance / PCP','Lease','Cash','Part-exchange','Salary sacrifice'].map(t=>`<div class="pill${sel.includes(t)?' selected':''}" onclick="togglePill('finance','${t}',this)">${t}</div>`).join('')}</div>
+      <div class="ob-q">Your budget</div>
+      ${(()=>{
+        const finSel = S.obSelected.finance||[];
+        const isFinance = finSel.some(f=>['Finance / PCP','Lease','Salary sacrifice'].includes(f));
+        const isPX = finSel.includes('Part-exchange');
+        if(isFinance) return \`
+          <div class="ob-q" style="margin-top:0">Monthly payment budget</div>
+          <div class="budget-display"><div class="budget-val" id="bd-mon">£\${(S.profile.monthly_max||400).toLocaleString()}/mo</div><div class="budget-sub">monthly budget</div></div>
+          <input type="range" min="100" max="1500" step="25" value="\${S.profile.monthly_max||400}" oninput="document.getElementById('bd-mon').textContent='£'+parseInt(this.value).toLocaleString()+'/mo';S.profile.monthly_max=parseInt(this.value)">
+          <div class="range-lbls"><span>£100/mo</span><span>£1,500/mo</span></div>
+          <div class="ob-q">Deposit</div>
+          <div class="budget-display"><div class="budget-val" id="bd-dep">£\${(S.profile.deposit||5000).toLocaleString()}</div><div class="budget-sub">upfront deposit</div></div>
+          <input type="range" min="0" max="20000" step="500" value="\${S.profile.deposit||5000}" oninput="document.getElementById('bd-dep').textContent='£'+parseInt(this.value).toLocaleString();S.profile.deposit=parseInt(this.value)">
+          <div class="range-lbls"><span>£0</span><span>£20,000</span></div>
+          <div class="ob-q">Contract length</div>
+          <div class="budget-display"><div class="budget-val" id="bd-con">\${S.profile.contract_months||24} months</div><div class="budget-sub">term length</div></div>
+          <input type="range" min="12" max="60" step="12" value="\${S.profile.contract_months||24}" oninput="document.getElementById('bd-con').textContent=parseInt(this.value)+' months';S.profile.contract_months=parseInt(this.value)">
+          <div class="range-lbls"><span>12 mo</span><span>60 mo</span></div>
+        \`;
+        return \`
+          <div class="budget-display"><div class="budget-val" id="bd-c">£\${(S.profile.budget_max||25000).toLocaleString()}</div><div class="budget-sub">maximum car price</div></div>
+          <input type="range" min="3000" max="100000" step="500" value="\${S.profile.budget_max||25000}" oninput="document.getElementById('bd-c').textContent='£'+parseInt(this.value).toLocaleString();S.profile.budget_max=parseInt(this.value)">
+          <div class="range-lbls"><span>£3k</span><span>£100k+</span></div>
+          \${isPX?\`<div class="ob-q">What car are you trading in?</div><input class="ob-input" id="ob-trade-in" placeholder="e.g. 2019 Ford Focus 1.0 EcoBoost" value="\${S.profile.trade_in_car||''}">\`:''}
+        \`;
+      })()}`;
   } else if (step.type === 'priorities') {
     const pri = S.profile.priorities || {};
-    const items = [['Brand','brand'],['Style','style'],['Performance','performance'],['Comfort','comfort'],['Fuel efficiency','efficiency'],['Price','price'],['Tech & connectivity','tech'],['Size','size'],['Reliability','reliability']];
-    html += `<div class="priority-list">` + items.map(([name,key]) => {
+    const items = [
+      ['Brand','brand'],['Style','style'],['Performance','performance'],
+      ['Comfort','comfort'],['Fuel efficiency','efficiency'],['Price','price'],
+      ['Tech & connectivity','tech'],['Size','size'],['Reliability','reliability']
+    ];
+    html += `<div class="priority-list">` + items.map(([name, key]) => {
       const val = pri[key] || 5;
       return `<div class="priority-row">
         <div class="priority-lbl">${name}</div>
-        <input type="range" min="1" max="10" step="1" value="${val}" oninput="const k='${key}',v=parseInt(this.value);S.profile.priorities=S.profile.priorities||{};S.profile.priorities[k]=v;this.nextElementSibling.textContent=v;if(k==='brand'){const bi=document.getElementById('brand-in');if(bi)bi.style.display=v>=7?'block':'none';}if(k==='size'){const si=document.getElementById('size-toggle');if(si)si.style.display=v>=7?'block':'none';}">
-        <div class="priority-val">${val}</div></div>
-        ${name==='Brand'?`<div id="brand-in" class="brand-expand" style="display:${(pri.brand||5)>=7?'block':'none'}"><input class="ob-input" placeholder="Which brands? e.g. BMW, Toyota, VW" value="${(S.profile.preferred_brands||[]).join(', ')}" oninput="S.profile.preferred_brands=this.value.split(',').map(s=>s.trim()).filter(Boolean)"></div>`:''}
-        ${name==='Size'?`<div id="size-toggle" class="brand-expand" style="display:${(pri.size||5)>=7?'block':'none'}"><div class="pill-grid"><div class="pill${S.profile.size_preference==='Bigger'?' selected':''}" onclick="S.profile.size_preference='Bigger';this.nextElementSibling.classList.remove('selected');this.classList.add('selected')">Bigger</div><div class="pill${S.profile.size_preference==='Smaller'?' selected':''}" onclick="S.profile.size_preference='Smaller';this.previousElementSibling.classList.remove('selected');this.classList.add('selected')">Smaller</div></div></div>`:''}`
+        <input type="range" min="1" max="10" step="1" value="${val}" oninput="const k='${key}';const v=parseInt(this.value);S.profile.priorities=S.profile.priorities||{};S.profile.priorities[k]=v;this.nextElementSibling.textContent=v;if(k==='brand'){document.getElementById('brand-in').style.display=v>=7?'block':'none';}if(k==='size'){const st=document.getElementById('size-toggle');if(st)st.style.display=v>=7?'block':'none';}">
+        <div class="priority-val">${val}</div>
+      </div>
+      ${name==='Brand'?`<div id="brand-in" class="brand-expand" style="display:${(pri.brand||5)>=7?'block':'none'}"><input class="ob-input" placeholder="Which brands? e.g. BMW, Toyota, VW" value="${(S.profile.preferred_brands||[]).join(', ')}" oninput="S.profile.preferred_brands=this.value.split(',').map(s=>s.trim()).filter(Boolean)"></div>`:''}
+      ${name==='Size'?`<div id="size-toggle" class="brand-expand" style="display:${(pri.size||5)>=7?'block':'none'}"><div class="pill-grid"><div class="pill${S.profile.size_preference==='Bigger'?' selected':''}" onclick="S.profile.size_preference='Bigger';this.nextElementSibling.classList.remove('selected');this.classList.add('selected')">Bigger</div><div class="pill${S.profile.size_preference==='Smaller'?' selected':''}" onclick="S.profile.size_preference='Smaller';this.previousElementSibling.classList.remove('selected');this.classList.add('selected')">Smaller</div></div></div>`:''}
     }).join('') + `</div>`;
   } else if (step.type === 'prefs') {
-    const ct=S.obSelected.cartype||[], uc=S.obSelected.usecase||[], mh=S.obSelected.musthave||[];
+    const ct = S.obSelected.cartype || [], uc = S.obSelected.usecase || [], mh = S.obSelected.musthave || [];
     html += `
       <div class="ob-q">What type of car?</div>
       <div class="pill-grid">${['Small city car','Hatchback','Estate','SUV / Crossover','Saloon','Coupe','Sports / Convertible','MPV'].map(t=>`<div class="pill${ct.includes(t)?' selected':''}" onclick="togglePill('cartype','${t}',this)">${t}</div>`).join('')}</div>
@@ -860,22 +744,23 @@ function renderOB() {
       <div class="ob-q">Any essential features?</div>
       <div class="pill-grid">${['Heated seats','Parking cameras','Apple CarPlay','Keyless entry','Adaptive cruise','Panoramic sunroof','Tow bar','Head-up display'].map(t=>`<div class="pill${mh.includes(t)?' selected':''}" onclick="togglePill('musthave','${t}',this)">${t}</div>`).join('')}</div>`;
   } else if (step.type === 'dream') {
-    const pri = S.profile.priorities || {};
-    let suggestions = ['Ferrari Roma','Porsche 911','BMW M3','Range Rover Sport','Aston Martin DB11','Mercedes G-Class','Lamborghini Urus','Rolls-Royce Wraith'];
-    if ((pri.performance||5) >= 7) suggestions = ['Porsche 911','BMW M3','Ferrari Roma','McLaren Artura','Aston Martin Vantage','Alfa Romeo Giulia QV','AMG GT','Lamborghini Huracán'];
-    else if ((S.obSelected.cartype||[]).some(t => t.includes('SUV'))) suggestions = ['Range Rover Sport','Porsche Cayenne','Lamborghini Urus','Bentley Bentayga','Rolls-Royce Cullinan','Aston Martin DBX','Ferrari Purosangue','BMW X5 M'];
-    else if ((pri.efficiency||5) >= 7) suggestions = ['Tesla Model S','Porsche Taycan','BMW i7','Mercedes EQS','Lucid Air','Polestar 5','Audi RS e-tron GT','Rivian R1S'];
+    // Dynamic dream car suggestions based on profile priorities
+    const pri = S.profile.priorities||{};
+    let dreamSuggestions = ['Ferrari Roma','Porsche 911','BMW M3','Range Rover Sport','Aston Martin DB11','Mercedes G-Class','Lamborghini Urus','Rolls-Royce Wraith'];
+    if((pri.performance||5)>=7) dreamSuggestions = ['Porsche 911','BMW M3','Ferrari Roma','Lamborghini Urus','McLaren Artura','Aston Martin Vantage','Alfa Romeo Giulia QV','AMG GT'];
+    else if((S.obSelected.cartype||[]).some(t=>t.includes('SUV')||t.includes('Family'))) dreamSuggestions = ['Range Rover Sport','Porsche Cayenne','Lamborghini Urus','BMW X5 M','Bentley Bentayga','Rolls-Royce Cullinan','Aston Martin DBX','Ferrari Purosangue'];
+    else if((pri.efficiency||5)>=7) dreamSuggestions = ['Tesla Model S','Porsche Taycan','BMW i7','Mercedes EQS','Lucid Air','Rivian R1S','Polestar 5','Audi RS e-tron GT'];
     html += `
-      <p style="font-size:13px;color:var(--ink-faint);margin:-18px 0 14px;font-style:italic;font-family:var(--fd)">Ella uses this for aspirational comparisons when relevant.</p>
-      <div class="pill-grid">${suggestions.map(t=>`<div class="pill${(S.obSelected.dream||[]).includes(t)?' selected':''}" onclick="togglePill('dream','${t}',this)">${t}</div>`).join('')}</div>
-      <input class="ob-input" id="ob-dream-custom" placeholder="Or type your own..." style="margin-top:4px">`;
+      <p style="font-size:13px;color:var(--ink-faint);margin:-18px 0 14px;font-style:italic;font-family:var(--fd)">Ella uses this for aspirational comparisons.</p>
+      <div class="pill-grid">${dreamSuggestions.map(t=>`<div class="pill${(S.obSelected.dream||[]).includes(t)?' selected':''}"  " onclick="togglePill('dream','${t}',this)">${t}</div>`).join('')}</div>
+      <input class="ob-input" id="ob-dream-custom" placeholder="Or type your own dream car...">`;
   }
 
   const isLast = S.obStep === total - 1;
   html += `<div class="ob-nav">
-    ${S.obStep > 0 ? `<button class="btn-outline" onclick="obPrev()">← Back</button>` : ''}
+    ${S.obStep>0?`<button class="btn-outline" onclick="obPrev()">← Back</button>`:''}
     <button class="btn-outline" onclick="obNext(true)">Skip</button>
-    <button class="btn-solid${isLast?' meet-ella':''}" onclick="obNext()">${isLast ? 'Meet Ella →' : 'Continue →'}</button>
+    <button class="btn-solid${isLast?' meet-ella':''}" onclick="obNext()">${isLast?'Meet Ella →':'Continue →'}</button>
   </div>`;
 
   document.getElementById('ob-content').innerHTML = html;
@@ -884,72 +769,253 @@ function renderOB() {
 function togglePill(key, val, el) {
   if (!S.obSelected[key]) S.obSelected[key] = [];
   const idx = S.obSelected[key].indexOf(val);
-  if (idx > -1) { S.obSelected[key].splice(idx,1); el.classList.remove('selected'); }
+  if (idx > -1) { S.obSelected[key].splice(idx, 1); el.classList.remove('selected'); }
   else { S.obSelected[key].push(val); el.classList.add('selected'); }
 }
 
-function obNext(skip=false) {
+function obNext(skip = false) {
   const step = OB_STEPS[S.obStep];
   if (!skip) {
-    if (step.type==='about') {
+    if (step.type === 'about') {
       const age = document.getElementById('ob-age')?.value;
       if (age) S.profile.age = parseInt(age);
-      S.profile.driving_history   = S.obSelected.dh || [];
-      S.profile.location_display  = document.getElementById('ob-loc')?.value  || '';
-      S.profile.occupation        = document.getElementById('ob-occ')?.value  || '';
-    } else if (step.type==='budget') {
+      S.profile.driving_history = S.obSelected.dh || [];
+      S.profile.location_display = document.getElementById('ob-loc')?.value || '';
+      S.profile.occupation = document.getElementById('ob-occ')?.value || '';
+    } else if (step.type === 'budget') {
       S.profile.finance_method = S.obSelected.finance || [];
-      const ti = document.getElementById('ob-trade-in')?.value;
-      if (ti) S.profile.trade_in_car = ti;
-    } else if (step.type==='prefs') {
-      S.profile.car_types          = S.obSelected.cartype  || [];
-      S.profile.use_cases          = S.obSelected.usecase  || [];
+      const tradeIn = document.getElementById('ob-trade-in')?.value;
+      if (tradeIn) S.profile.trade_in_car = tradeIn;
+    } else if (step.type === 'prefs') {
+      S.profile.car_types = S.obSelected.cartype || [];
+      S.profile.use_cases = S.obSelected.usecase || [];
       S.profile.must_have_features = S.obSelected.musthave || [];
-    } else if (step.type==='dream') {
+    } else if (step.type === 'dream') {
       const custom = document.getElementById('ob-dream-custom')?.value;
-      S.profile.dream_cars = [...(S.obSelected.dream||[]), ...(custom?[custom]:[])];
+      S.profile.dream_cars = [...(S.obSelected.dream || []), ...(custom ? [custom] : [])];
     }
   }
   if (S.obStep < OB_STEPS.length - 1) { S.obStep++; renderOB(); }
   else finishOB();
 }
-
 function obPrev() { S.obStep--; renderOB(); }
 function finishOB() {
   document.getElementById('onboarding').classList.remove('active');
   showApp(S.pendingSearch);
-  // Save profile to Supabase if logged in
-  if (S.authToken && S.userId) {
-    fetch('/api/profile', {
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':`Bearer ${S.authToken}`},
-      body: JSON.stringify(S.profile)
-    }).catch(()=>{});
-  }
 }
 
-// ═══════════════════ APP ═══════════════════
+// ═══════════════════ APP SWITCH ═══════════════════
 function showApp(initial) {
   document.getElementById('landing').style.display = 'none';
   document.getElementById('app').classList.add('active');
-  updateGCBadge();
+  // ─── SUPABASE AUTH ────────────────────────────────────────────────
+const SB_URL  = 'https://bhrbrbrawrzcpuwkzwjz.supabase.co';
+const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJocmJyYnJhd3J6Y3B1d2t6d2p6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNDY3NTUsImV4cCI6MjA5MjcyMjc1NX0.17enpmTpcgUwA7EA_RvHiH4XdKNZn9yAXcNmoPZ9o-k';
+
+async function sbAuth(endpoint, body) {
+  const r = await fetch(`${SB_URL}/auth/v1/${endpoint}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'apikey': SB_ANON },
+    body: JSON.stringify(body)
+  });
+  return r.json();
+}
+
+async function signUp(email, password) {
+  return sbAuth('signup', { email, password });
+}
+
+async function signIn(email, password) {
+  return sbAuth('token?grant_type=password', { email, password });
+}
+
+async function signOut() {
+  if (!S.authToken) return;
+  await fetch(`${SB_URL}/auth/v1/logout`, {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${S.authToken}`, 'apikey': SB_ANON }
+  });
+  S.authToken = null; S.userId = null; S.userEmail = null; S.isPro = false;
+  localStorage.removeItem('sb_token');
+  localStorage.removeItem('sb_uid');
+  localStorage.removeItem('sb_email');
   updateAuthUI();
-  addEllaMsg("Hi — I'm Ella, your UK car concierge. Tell me what you're after: budget, how you'll use it, your situation. I'll search the entire UK market.");
-  if (S.profile.location_display || S.profile.budget_max !== 25000) {
-    setTimeout(() => addFollowUp(`Profile loaded${S.profile.location_display?' · '+S.profile.location_display:''}${S.profile.budget_max?' · Budget up to £'+S.profile.budget_max.toLocaleString():''}. What are you looking for?`), 600);
+}
+
+function saveAuthSession(data) {
+  S.authToken  = data.access_token;
+  S.userId     = data.user?.id;
+  S.userEmail  = data.user?.email;
+  localStorage.setItem('sb_token',  S.authToken);
+  localStorage.setItem('sb_uid',    S.userId);
+  localStorage.setItem('sb_email',  S.userEmail);
+}
+
+function updateAuthUI() {
+  const avatar = document.getElementById('user-avatar');
+  if (!avatar) return;
+  if (S.authToken) {
+    const initial = (S.userEmail || 'U')[0].toUpperCase();
+    avatar.textContent = initial;
+    avatar.title = S.userEmail;
+    avatar.onclick = () => { if (confirm('Sign out?')) signOut(); };
+  } else {
+    avatar.textContent = '?';
+    avatar.title = 'Sign in';
+    avatar.onclick = () => showAuthModal();
+  }
+}
+
+// Auth modal
+let authMode = 'signin'; // 'signin' | 'signup'
+let authPendingAction = null;
+
+function showAuthModal(pendingAction) {
+  authPendingAction = pendingAction || null;
+  document.getElementById('auth-modal').classList.add('active');
+  document.getElementById('auth-email').focus();
+}
+function closeAuthModal() {
+  document.getElementById('auth-modal').classList.remove('active');
+  document.getElementById('auth-error').style.display = 'none';
+  document.getElementById('auth-email').value = '';
+  document.getElementById('auth-password').value = '';
+  document.getElementById('auth-btn-text').textContent = authMode === 'signin' ? 'Sign in' : 'Create account';
+}
+function toggleAuthMode() {
+  authMode = authMode === 'signin' ? 'signup' : 'signin';
+  document.getElementById('auth-title').textContent    = authMode === 'signin' ? 'Sign in' : 'Create account';
+  document.getElementById('auth-subtitle').textContent = authMode === 'signin' ? 'Welcome back to Carella.' : 'Free forever. No credit card needed.';
+  document.getElementById('auth-btn-text').textContent = authMode === 'signin' ? 'Sign in' : 'Create account';
+  document.getElementById('auth-toggle-text').textContent = authMode === 'signin' ? "Don't have an account?" : 'Already have an account?';
+  document.getElementById('auth-toggle-link').textContent = authMode === 'signin' ? 'Sign up free' : 'Sign in';
+  document.getElementById('auth-error').style.display = 'none';
+}
+
+async function submitAuth() {
+  const email    = document.getElementById('auth-email').value.trim();
+  const password = document.getElementById('auth-password').value;
+  const errEl    = document.getElementById('auth-error');
+  const btnTxt   = document.getElementById('auth-btn-text');
+  if (!email || !password) { errEl.textContent = 'Please enter email and password'; errEl.style.display = 'block'; return; }
+  if (password.length < 6)  { errEl.textContent = 'Password must be at least 6 characters'; errEl.style.display = 'block'; return; }
+  btnTxt.textContent = authMode === 'signin' ? 'Signing in…' : 'Creating account…';
+  errEl.style.display = 'none';
+  try {
+    const data = authMode === 'signin' ? await signIn(email, password) : await signUp(email, password);
+    if (data.access_token) {
+      saveAuthSession(data);
+      closeAuthModal();
+      updateAuthUI();
+      await checkProStatus();
+      // Run pending action
+      if (authPendingAction === 'upgrade') startStripeCheckout();
+      else if (authPendingAction === 'search') document.getElementById('chat-input')?.focus();
+    } else {
+      const msg = data.error_description || data.msg || data.message || 'Something went wrong';
+      errEl.textContent = msg;
+      errEl.style.display = 'block';
+      btnTxt.textContent = authMode === 'signin' ? 'Sign in' : 'Create account';
+    }
+  } catch(e) {
+    errEl.textContent = 'Network error — try again';
+    errEl.style.display = 'block';
+    btnTxt.textContent = authMode === 'signin' ? 'Sign in' : 'Create account';
+  }
+}
+
+// ─── STRIPE ───────────────────────────────────────────────────────
+async function startStripeCheckout() {
+  if (!S.authToken) { showAuthModal('upgrade'); return; }
+  const btn = document.getElementById('stripe-upgrade-btn');
+  const txt = document.getElementById('stripe-btn-text');
+  if (txt) txt.textContent = 'Opening checkout…';
+  if (btn) btn.disabled = true;
+  try {
+    const resp = await fetch('/api/stripe/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${S.authToken}` },
+      body: JSON.stringify({})
+    });
+    const data = await resp.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      if (txt) txt.textContent = data.error || 'Try again';
+      if (btn) btn.disabled = false;
+    }
+  } catch(e) {
+    if (txt) txt.textContent = 'Try again';
+    if (btn) btn.disabled = false;
+  }
+}
+
+async function openBillingPortal() {
+  if (!S.authToken) return;
+  try {
+    const resp = await fetch('/api/stripe/portal', {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${S.authToken}` }
+    });
+    const data = await resp.json();
+    if (data.url) window.open(data.url, '_blank');
+  } catch(e) { console.error(e); }
+}
+
+async function checkProStatus() {
+  if (!S.authToken) return;
+  try {
+    const resp = await fetch('/api/pro/status', {
+      headers: { 'Authorization': `Bearer ${S.authToken}` }
+    });
+    const data = await resp.json();
+    if (data.is_pro) {
+      S.isPro = true;
+      const si = document.getElementById('ses-info');
+      if (si) si.innerHTML = '⚡ Pro · Unlimited · <a onclick="openBillingPortal()" style="cursor:pointer">Manage</a>';
+    }
+  } catch(e) {}
+}
+
+// On load: restore session + check for Stripe return
+(async function init() {
+  updateAuthUI();
+  if (S.authToken) await checkProStatus();
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('upgraded') === 'true') {
+    S.isPro = true;
+    window.history.replaceState({}, '', window.location.pathname);
+    // Will show message once app loads
+    S.pendingUpgradeMsg = true;
+  }
+  if (params.get('upgrade') === 'cancelled') {
+    window.history.replaceState({}, '', window.location.pathname);
+  }
+})();
+
+updateGCBadge();
+  if (S.pendingUpgradeMsg) {
+    S.isPro = true;
+    addEllaMsg("Welcome to Carella Pro! You now have unlimited searches, full MOT history and price drop alerts. What car are we finding today?");
+    S.pendingUpgradeMsg = false;
+  } else {
+    addEllaMsg("Hi — I'm Ella, your UK car concierge. Tell me what you're after: budget, how you'll use it, your situation. I'll search the entire UK market.");
+  }
+  if (S.profile.location_display || S.profile.budget_max) {
+    setTimeout(() => addFollowUp(`Profile loaded${S.profile.location_display ? ' · ' + S.profile.location_display : ''}${S.profile.budget_max ? ' · Budget up to £' + S.profile.budget_max.toLocaleString() : ''}. What are you looking for?`), 600);
   }
   if (initial) setTimeout(() => { document.getElementById('chat-input').value = initial; sendMsg(); }, 1400);
 }
-
-function backToLanding() { document.getElementById('app').classList.remove('active'); document.getElementById('landing').style.display='flex'; }
-
+function backToLanding() {
+  document.getElementById('app').classList.remove('active');
+  document.getElementById('landing').style.display = 'flex';
+}
 function showSearch() {
   document.getElementById('search-panel').style.display = 'flex';
   document.getElementById('garage-panel').classList.remove('active');
   document.getElementById('nav-search').classList.add('active');
   document.getElementById('nav-garage').classList.remove('active');
 }
-
 function showGarage() {
   document.getElementById('search-panel').style.display = 'none';
   document.getElementById('garage-panel').classList.add('active');
@@ -961,34 +1027,50 @@ function showGarage() {
 // ═══════════════════ CHAT ═══════════════════
 function addEllaMsg(text) {
   const c = document.getElementById('chat-msgs');
-  const d = document.createElement('div'); d.className='chat-msg ella';
-  d.innerHTML=`<div class="mav eav">E</div><div style="flex:1"><div class="bubble ebub">${text}</div><div style="display:flex;gap:8px;margin-top:4px;padding-left:2px"><button onclick="this.style.color='var(--green)';this.nextElementSibling.style.color='var(--ink-faint)'" style="background:none;border:none;cursor:pointer;font-size:13px;color:var(--ink-faint)" title="Helpful">👍</button><button onclick="this.style.color='#ef4444';this.previousElementSibling.style.color='var(--ink-faint)'" style="background:none;border:none;cursor:pointer;font-size:13px;color:var(--ink-faint)" title="Not helpful">👎</button></div></div>`;
-  c.appendChild(d); c.scrollTop = c.scrollHeight;
+  const d = document.createElement('div');
+  d.className = 'chat-msg ella';
+  d.innerHTML = `<div class="mav eav">E</div><div style="flex:1"><div class="bubble ebub">${text}</div><div style="display:flex;gap:8px;margin-top:4px;padding-left:2px"><button onclick="this.style.color='var(--green)';this.nextElementSibling.style.color='var(--ink-faint)'" style="background:none;border:none;cursor:pointer;font-size:13px;color:var(--ink-faint);transition:color .15s" title="Helpful">👍</button><button onclick="this.style.color='var(--red,#ef4444)';this.previousElementSibling.style.color='var(--ink-faint)'" style="background:none;border:none;cursor:pointer;font-size:13px;color:var(--ink-faint);transition:color .15s" title="Not helpful">👎</button></div></div>`;
+  c.appendChild(d);
+  c.scrollTop = c.scrollHeight;
 }
 function addFollowUp(text) {
   const c = document.getElementById('chat-msgs');
-  const d = document.createElement('div'); d.className='chat-msg ella';
-  d.innerHTML=`<div class="mav eav" style="opacity:0"></div><div class="fubub">${text}</div>`;
-  c.appendChild(d); c.scrollTop = c.scrollHeight;
+  const d = document.createElement('div');
+  d.className = 'chat-msg ella';
+  d.innerHTML = `<div class="mav eav" style="opacity:0"></div><div class="fubub">${text}</div>`;
+  c.appendChild(d);
+  c.scrollTop = c.scrollHeight;
 }
 function addBrokerNote(text) {
   if (!text) return;
   const c = document.getElementById('chat-msgs');
-  const d = document.createElement('div'); d.className='chat-msg ella';
-  d.innerHTML=`<div class="mav eav" style="opacity:0"></div><div class="broker-note">${text}</div>`;
-  c.appendChild(d); c.scrollTop = c.scrollHeight;
+  const d = document.createElement('div');
+  d.className = 'chat-msg ella';
+  d.innerHTML = `<div class="mav eav" style="opacity:0"></div><div class="broker-note">${text}</div>`;
+  c.appendChild(d);
+  c.scrollTop = c.scrollHeight;
 }
 function addUserMsg(text) {
   const c = document.getElementById('chat-msgs');
-  const d = document.createElement('div'); d.className='chat-msg user';
-  d.innerHTML=`<div class="mav uav">${(localStorage.getItem('sb_email')||'?')[0].toUpperCase()}</div><div class="bubble ubub">${text}</div>`;
-  c.appendChild(d); c.scrollTop = c.scrollHeight;
+  const d = document.createElement('div');
+  d.className = 'chat-msg user';
+  d.innerHTML = `<div class="mav uav">N</div><div class="bubble ubub">${text}</div>`;
+  c.appendChild(d);
+  c.scrollTop = c.scrollHeight;
 }
 function showTyping() {
   const c = document.getElementById('chat-msgs');
-  const d = document.createElement('div'); d.className='chat-msg ella'; d.id='typing';
-  d.innerHTML=`<div class="mav eav">E</div><div class="scan"><div class="scan-line"><div class="spin"></div>Reading your requirements…</div><div class="scan-line"><div class="spin"></div>Scanning UK market…</div><div class="scan-line"><div class="spin"></div>Checking TCO, insurance, ULEZ…</div><div class="scan-line"><div class="spin"></div>Building your shortlist…</div></div>`;
-  c.appendChild(d); c.scrollTop = c.scrollHeight;
+  const d = document.createElement('div');
+  d.className = 'chat-msg ella';
+  d.id = 'typing';
+  d.innerHTML = `<div class="mav eav">E</div><div class="scan">
+    <div class="scan-line"><div class="spin"></div>Reading your requirements…</div>
+    <div class="scan-line"><div class="spin"></div>Scanning UK market…</div>
+    <div class="scan-line"><div class="spin"></div>Checking TCO, insurance, ULEZ…</div>
+    <div class="scan-line"><div class="spin"></div>Building your shortlist…</div>
+  </div>`;
+  c.appendChild(d);
+  c.scrollTop = c.scrollHeight;
 }
 function hideTyping() { document.getElementById('typing')?.remove(); }
 
@@ -997,102 +1079,127 @@ async function sendMsg() {
   const msg = inp.value.trim();
   if (!msg || S.loading) return;
   if (!S.isPro && S.searchCount >= MAX_FREE) {
-    addEllaMsg(`You've used your ${MAX_FREE} free searches today. Upgrade to Pro for unlimited.`);
-    openProModal(); return;
+    addEllaMsg("You've used your 3 free searches today. Upgrade to Pro for unlimited searches.");
+    openProModal();
+    return;
   }
-  addUserMsg(msg); inp.value='';
-  S.loading=true; document.getElementById('csend').disabled=true; showTyping();
+  addUserMsg(msg);
+  inp.value = '';
+  S.loading = true;
+  document.getElementById('csend').disabled = true;
+  showTyping();
+
   try {
-    const headers = {'Content-Type':'application/json'};
-    if (S.authToken) headers['Authorization'] = `Bearer ${S.authToken}`;
     const resp = await fetch('/api/ella/search', {
-      method:'POST', headers,
-      body: JSON.stringify({ session_id:S.sid, user_message:msg, profile:S.profile })
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: S.sid, user_message: msg, profile: S.profile })
     });
     const data = await resp.json();
-    hideTyping(); S.sid=data.session_id; S.results=data.results||[]; S.searchCount++;
+    hideTyping();
+    S.sid = data.session_id;
+    S.results = data.results || [];
+    S.searchCount++;
     localStorage.setItem('csc', S.searchCount.toString());
     localStorage.setItem('csd', today);
+
     if (!S.isPro) {
-      const rem = Math.max(0, MAX_FREE-S.searchCount);
-      document.getElementById('ses-info').innerHTML=`Free · ${rem} search${rem!==1?'es':''} left today · <a onclick="openProModal()">Upgrade to Pro</a>`;
+      const rem = Math.max(0, MAX_FREE - S.searchCount);
+      document.getElementById('ses-info').innerHTML = `Free · ${rem} search${rem !== 1 ? 'es' : ''} left today · <a onclick="openProModal()">Upgrade to Pro</a>`;
     }
     if (data.ella_message) addEllaMsg(data.ella_message);
-    if (data.broker_notes) setTimeout(()=>addBrokerNote(data.broker_notes), 400);
+    if (data.broker_notes) setTimeout(() => addBrokerNote(data.broker_notes), 400);
     if (data.results?.length > 0) {
-      setTimeout(()=>renderResults(data.results), 300);
-      if (data.follow_up_question) setTimeout(()=>addFollowUp(data.follow_up_question), 900);
-      if (S.searchCount >= 2 && !S.isPro) document.getElementById('pro-banner').style.display='flex';
+      setTimeout(() => renderResults(data.results), 300);
+      if (data.follow_up_question) setTimeout(() => addFollowUp(data.follow_up_question), 900);
+      if (S.searchCount >= 2 && !S.isPro) document.getElementById('pro-banner').style.display = 'flex';
     } else if (!data.needs_clarification) {
-      addEllaMsg("No exact matches found. Try adjusting your budget or fuel type.");
+      addEllaMsg("No exact matches in my current inventory. Try adjusting your budget or fuel type.");
     }
-  } catch(e) { hideTyping(); addEllaMsg("Having a moment — try again in a few seconds."); }
-  S.loading=false; document.getElementById('csend').disabled=false;
+  } catch (e) {
+    hideTyping();
+    addEllaMsg("Having a moment — try again in a few seconds.");
+  }
+  S.loading = false;
+  document.getElementById('csend').disabled = false;
   document.getElementById('chat-input').focus();
 }
 
 function newSession() {
-  S.sid=`s_${Date.now()}_${Math.random().toString(36).slice(2)}`; S.results=[];
-  document.getElementById('chat-msgs').innerHTML='';
-  document.getElementById('empty-state').style.display='flex';
-  document.getElementById('res-container').style.display='none';
+  S.sid = `s_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+  S.results = [];
+  document.getElementById('chat-msgs').innerHTML = '';
+  document.getElementById('empty-state').style.display = 'flex';
+  document.getElementById('res-container').style.display = 'none';
   addEllaMsg("New search — what are you looking for?");
 }
 
 // ═══════════════════ RESULTS ═══════════════════
 const DEFAULT_REASONS = [
-  'Excellent reliability record and strong value for your budget.',
+  'Excellent reliability record and strong value in your budget.',
   'Low insurance group — ideal for keeping running costs down.',
-  'Clean MOT history and single careful owner.',
+  'Clean MOT history and a single careful owner.',
   'Efficient powertrain matching your usage profile.',
-  'Best-in-class for value and reliability in this segment.',
+  'Best-in-class boot space and 5-star NCAP safety.',
   'Good residual value — holds price well over time.',
   'Low road tax and fuel costs keep TCO minimal.',
 ];
 
 function renderResults(cars) {
   document.getElementById('empty-state').style.display = 'none';
-  const rc = document.getElementById('res-container'); rc.style.display='flex';
+  const rc = document.getElementById('res-container');
+  rc.style.display = 'flex';
   document.getElementById('res-count-n').textContent = cars.length;
-  const g = document.getElementById('res-grid'); g.innerHTML='';
-  cars.forEach((c,i) => g.appendChild(makeCard(c,i)));
+  const g = document.getElementById('res-grid');
+  g.innerHTML = '';
+  cars.forEach((c, i) => g.appendChild(makeCard(c, i)));
 }
 
 function makeCard(c, i) {
   const saved = S.garage.some(g => g.id === c.id);
-  const fi = {Petrol:'⛽',Diesel:'🛢',Hybrid:'🔋',Electric:'⚡','Mild Hybrid':'🔋',PHEV:'🔌'}[c.fuel]||'⛽';
-  const tco = c.tco || {total:0,fuel:0,insurance:0,ved:0};
-  const age = Math.max(1, new Date().getFullYear() - c.year);
-  const annualMiles = c.mileage > 0 ? Math.round(c.mileage/age/1000) : 0;
+  const fi = { Petrol: '⛽', Diesel: '🛢', Hybrid: '🔋', Electric: '⚡', 'Mild Hybrid': '🔋', PHEV: '🔌' }[c.fuel] || '⛽';
+  const tco = c.tco || { total: 0, fuel: 0, insurance: 0, ved: 0 };
   const badges = [
     c.ulez ? '<span class="cbadge b-ulez">ULEZ ✓</span>' : '',
-    c.fsh && c.new_or_used==='used' ? '<span class="cbadge b-fsh">Full SH</span>' : '',
-    c.fuel==='Electric' ? '<span class="cbadge b-ev">⚡ EV</span>' : '',
-    c.fuel==='PHEV' ? '<span class="cbadge b-phev">🔌 PHEV</span>' : '',
-    c.new_or_used==='new' ? '<span class="cbadge b-new">Brand new</span>' : '',
-  ].filter(Boolean).slice(0,2).join('');
-  const priceBadge = c.score >= 75 
-    ? '<span style="font-size:10px;font-weight:700;color:var(--green);background:var(--green-tint);padding:2px 7px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em">Good price</span>'
-    : c.score >= 55 ? '<span style="font-size:10px;font-weight:700;color:var(--ink-faint);background:var(--cream);padding:2px 7px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em;border:1px solid var(--hair)">Fair</span>' : '';
+    c.fsh && c.new_or_used === 'used' ? '<span class="cbadge b-fsh">Full SH</span>' : '',
+    c.fuel === 'Electric' ? '<span class="cbadge b-ev">⚡ EV</span>' : '',
+    c.fuel === 'PHEV' ? '<span class="cbadge b-phev">🔌 PHEV</span>' : '',
+    c.new_or_used === 'new' ? '<span class="cbadge b-new">Brand new</span>' : '',
+  ].filter(Boolean).slice(0, 2).join('');
   const reason = c.ella_reason || DEFAULT_REASONS[i % DEFAULT_REASONS.length];
-  const div = document.createElement('div'); div.className='car-card'; div.style.animationDelay=`${i*.05}s`;
-  div.innerHTML=`
+
+  const div = document.createElement('div');
+  div.className = 'car-card';
+  div.style.animationDelay = `${i * .05}s`;
+  div.innerHTML = `
     <div class="img-wrap">
       <img class="car-img" src="${c.image}" alt="${c.make} ${c.model}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80'">
-      <button class="sv-btn${saved?' saved':''}" onclick="toggleSave(event,'${c.id}')">${saved?'♥':'♡'}</button>
+      <button class="sv-btn${saved ? ' saved' : ''}" onclick="toggleSave(event,'${c.id}')">${saved ? '♥' : '♡'}</button>
       <div class="cbadges">${badges}</div>
     </div>
     <div class="car-body">
       <div class="car-title">${c.year} ${c.make} ${c.model}</div>
       <div class="car-variant">${c.variant}</div>
-      <div class="car-price" style="display:flex;align-items:baseline;gap:9px"><span><em>£</em>${c.price.toLocaleString()}</span>${priceBadge}</div>
+      <div class="car-price" style="display:flex;align-items:baseline;gap:10px">
+        <span><em>£</em>${c.price.toLocaleString()}</span>
+        ${(()=>{
+          const ratio = c.price / (c.price * (c.new_or_used==='new' ? 1 : 0.95));
+          const score = c.score||50;
+          if(score>=75) return '<span style="font-size:10px;font-weight:700;color:var(--green);background:var(--green-tint);padding:2px 7px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em;font-family:var(--fb)">Good price</span>';
+          if(score>=55) return '<span style="font-size:10px;font-weight:700;color:var(--ink-mute);background:var(--cream);padding:2px 7px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em;font-family:var(--fb);border:1px solid var(--hair)">Fair</span>';
+          return '';
+        })()}
+      </div>
       <div class="cmeta">
         <div class="mpill">${fi} ${c.fuel}</div>
         <div class="mpill">⚙ ${c.transmission}</div>
-        <div class="mpill">📍 ${c.location}</div>
-        <div class="mpill">🛣 ${c.mileage>0?c.mileage.toLocaleString()+' mi'+(annualMiles?' (~'+annualMiles+'k/yr)':''):'Brand new'}</div>
+        <div class="mpill">📍 ${c.location}${S.profile.location_display && c.region ? ' · ' + (c.region === S.profile.location_display ? 'Local' : 'Nearby') : ''}</div>
+        <div class="mpill">🛣 ${c.mileage > 0 ? c.mileage.toLocaleString() + ' mi (~' + Math.round(c.mileage / Math.max(new Date().getFullYear() - c.year, 1) / 1000) + 'k/yr)' : 'Brand new'}</div>
       </div>
-      <div class="tco-row"><div class="tco-lbl">Est. monthly</div><div class="tco-val">~£${tco.total}/mo</div></div>
+      <div class="tco-row">
+        <div class="tco-lbl">Est. monthly</div>
+        <div class="tco-val">~£${tco.total}/mo</div>
+      </div>
       <div class="ella-reason">${reason}</div>
       <div class="card-cta">
         <button class="btn-det" onclick="openModal('${c.id}')">View details</button>
@@ -1103,58 +1210,250 @@ function makeCard(c, i) {
 }
 
 function sortResults(by) {
-  let s=[...S.results];
-  if(by==='price-asc') s.sort((a,b)=>a.price-b.price);
-  else if(by==='price-desc') s.sort((a,b)=>b.price-a.price);
-  else if(by==='mileage') s.sort((a,b)=>a.mileage-b.mileage);
-  else if(by==='year') s.sort((a,b)=>b.year-a.year);
+  let s = [...S.results];
+  if (by === 'price-asc') s.sort((a, b) => a.price - b.price);
+  else if (by === 'price-desc') s.sort((a, b) => b.price - a.price);
+  else if (by === 'mileage') s.sort((a, b) => a.mileage - b.mileage);
+  else if (by === 'year') s.sort((a, b) => b.year - a.year);
   renderResults(s);
 }
 
-async function toggleSave(e, id) {
+function toggleSave(e, id) {
   e.stopPropagation();
-  const car = [...S.results,...S.garage].find(c=>c.id===id); if(!car) return;
-  if (!S.isPro && !S.garage.some(g=>g.id===id) && S.garage.length>=5) { openProModal(); return; }
-  const idx = S.garage.findIndex(g=>g.id===id);
-  if (idx>-1) {
-    S.garage.splice(idx,1);
-    if (S.authToken) fetch('/api/garage/'+id, {method:'DELETE',headers:{'Authorization':`Bearer ${S.authToken}`}}).catch(()=>{});
-  } else {
-    S.garage.push({...car, saved_at:new Date().toISOString()});
-    if (S.authToken) fetch('/api/garage', {method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${S.authToken}`},body:JSON.stringify(car)}).catch(()=>{});
+  const car = [...S.results, ...S.garage].find(c => c.id === id);
+  if (!car) return;
+  if (!S.isPro && !S.garage.some(g => g.id === id) && S.garage.length >= 5) {
+    openProModal();
+    return;
   }
+  const idx = S.garage.findIndex(g => g.id === id);
+  if (idx > -1) S.garage.splice(idx, 1);
+  else S.garage.push({ ...car, saved_at: new Date().toISOString() });
   localStorage.setItem('cg', JSON.stringify(S.garage));
-  updateGCBadge();
+  // ─── SUPABASE AUTH ────────────────────────────────────────────────
+const SB_URL  = 'https://bhrbrbrawrzcpuwkzwjz.supabase.co';
+const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJocmJyYnJhd3J6Y3B1d2t6d2p6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNDY3NTUsImV4cCI6MjA5MjcyMjc1NX0.17enpmTpcgUwA7EA_RvHiH4XdKNZn9yAXcNmoPZ9o-k';
+
+async function sbAuth(endpoint, body) {
+  const r = await fetch(`${SB_URL}/auth/v1/${endpoint}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'apikey': SB_ANON },
+    body: JSON.stringify(body)
+  });
+  return r.json();
+}
+
+async function signUp(email, password) {
+  return sbAuth('signup', { email, password });
+}
+
+async function signIn(email, password) {
+  return sbAuth('token?grant_type=password', { email, password });
+}
+
+async function signOut() {
+  if (!S.authToken) return;
+  await fetch(`${SB_URL}/auth/v1/logout`, {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${S.authToken}`, 'apikey': SB_ANON }
+  });
+  S.authToken = null; S.userId = null; S.userEmail = null; S.isPro = false;
+  localStorage.removeItem('sb_token');
+  localStorage.removeItem('sb_uid');
+  localStorage.removeItem('sb_email');
+  updateAuthUI();
+}
+
+function saveAuthSession(data) {
+  S.authToken  = data.access_token;
+  S.userId     = data.user?.id;
+  S.userEmail  = data.user?.email;
+  localStorage.setItem('sb_token',  S.authToken);
+  localStorage.setItem('sb_uid',    S.userId);
+  localStorage.setItem('sb_email',  S.userEmail);
+}
+
+function updateAuthUI() {
+  const avatar = document.getElementById('user-avatar');
+  if (!avatar) return;
+  if (S.authToken) {
+    const initial = (S.userEmail || 'U')[0].toUpperCase();
+    avatar.textContent = initial;
+    avatar.title = S.userEmail;
+    avatar.onclick = () => { if (confirm('Sign out?')) signOut(); };
+  } else {
+    avatar.textContent = '?';
+    avatar.title = 'Sign in';
+    avatar.onclick = () => showAuthModal();
+  }
+}
+
+// Auth modal
+let authMode = 'signin'; // 'signin' | 'signup'
+let authPendingAction = null;
+
+function showAuthModal(pendingAction) {
+  authPendingAction = pendingAction || null;
+  document.getElementById('auth-modal').classList.add('active');
+  document.getElementById('auth-email').focus();
+}
+function closeAuthModal() {
+  document.getElementById('auth-modal').classList.remove('active');
+  document.getElementById('auth-error').style.display = 'none';
+  document.getElementById('auth-email').value = '';
+  document.getElementById('auth-password').value = '';
+  document.getElementById('auth-btn-text').textContent = authMode === 'signin' ? 'Sign in' : 'Create account';
+}
+function toggleAuthMode() {
+  authMode = authMode === 'signin' ? 'signup' : 'signin';
+  document.getElementById('auth-title').textContent    = authMode === 'signin' ? 'Sign in' : 'Create account';
+  document.getElementById('auth-subtitle').textContent = authMode === 'signin' ? 'Welcome back to Carella.' : 'Free forever. No credit card needed.';
+  document.getElementById('auth-btn-text').textContent = authMode === 'signin' ? 'Sign in' : 'Create account';
+  document.getElementById('auth-toggle-text').textContent = authMode === 'signin' ? "Don't have an account?" : 'Already have an account?';
+  document.getElementById('auth-toggle-link').textContent = authMode === 'signin' ? 'Sign up free' : 'Sign in';
+  document.getElementById('auth-error').style.display = 'none';
+}
+
+async function submitAuth() {
+  const email    = document.getElementById('auth-email').value.trim();
+  const password = document.getElementById('auth-password').value;
+  const errEl    = document.getElementById('auth-error');
+  const btnTxt   = document.getElementById('auth-btn-text');
+  if (!email || !password) { errEl.textContent = 'Please enter email and password'; errEl.style.display = 'block'; return; }
+  if (password.length < 6)  { errEl.textContent = 'Password must be at least 6 characters'; errEl.style.display = 'block'; return; }
+  btnTxt.textContent = authMode === 'signin' ? 'Signing in…' : 'Creating account…';
+  errEl.style.display = 'none';
+  try {
+    const data = authMode === 'signin' ? await signIn(email, password) : await signUp(email, password);
+    if (data.access_token) {
+      saveAuthSession(data);
+      closeAuthModal();
+      updateAuthUI();
+      await checkProStatus();
+      // Run pending action
+      if (authPendingAction === 'upgrade') startStripeCheckout();
+      else if (authPendingAction === 'search') document.getElementById('chat-input')?.focus();
+    } else {
+      const msg = data.error_description || data.msg || data.message || 'Something went wrong';
+      errEl.textContent = msg;
+      errEl.style.display = 'block';
+      btnTxt.textContent = authMode === 'signin' ? 'Sign in' : 'Create account';
+    }
+  } catch(e) {
+    errEl.textContent = 'Network error — try again';
+    errEl.style.display = 'block';
+    btnTxt.textContent = authMode === 'signin' ? 'Sign in' : 'Create account';
+  }
+}
+
+// ─── STRIPE ───────────────────────────────────────────────────────
+async function startStripeCheckout() {
+  if (!S.authToken) { showAuthModal('upgrade'); return; }
+  const btn = document.getElementById('stripe-upgrade-btn');
+  const txt = document.getElementById('stripe-btn-text');
+  if (txt) txt.textContent = 'Opening checkout…';
+  if (btn) btn.disabled = true;
+  try {
+    const resp = await fetch('/api/stripe/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${S.authToken}` },
+      body: JSON.stringify({})
+    });
+    const data = await resp.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      if (txt) txt.textContent = data.error || 'Try again';
+      if (btn) btn.disabled = false;
+    }
+  } catch(e) {
+    if (txt) txt.textContent = 'Try again';
+    if (btn) btn.disabled = false;
+  }
+}
+
+async function openBillingPortal() {
+  if (!S.authToken) return;
+  try {
+    const resp = await fetch('/api/stripe/portal', {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${S.authToken}` }
+    });
+    const data = await resp.json();
+    if (data.url) window.open(data.url, '_blank');
+  } catch(e) { console.error(e); }
+}
+
+async function checkProStatus() {
+  if (!S.authToken) return;
+  try {
+    const resp = await fetch('/api/pro/status', {
+      headers: { 'Authorization': `Bearer ${S.authToken}` }
+    });
+    const data = await resp.json();
+    if (data.is_pro) {
+      S.isPro = true;
+      const si = document.getElementById('ses-info');
+      if (si) si.innerHTML = '⚡ Pro · Unlimited · <a onclick="openBillingPortal()" style="cursor:pointer">Manage</a>';
+    }
+  } catch(e) {}
+}
+
+// On load: restore session + check for Stripe return
+(async function init() {
+  updateAuthUI();
+  if (S.authToken) await checkProStatus();
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('upgraded') === 'true') {
+    S.isPro = true;
+    window.history.replaceState({}, '', window.location.pathname);
+    // Will show message once app loads
+    S.pendingUpgradeMsg = true;
+  }
+  if (params.get('upgrade') === 'cancelled') {
+    window.history.replaceState({}, '', window.location.pathname);
+  }
+})();
+
+updateGCBadge();
   if (S.results.length) renderResults(S.results);
   renderGarage();
 }
 
 function updateGCBadge() {
-  const gc=document.getElementById('gc');
-  if(S.garage.length) {gc.style.display='inline';gc.textContent=S.garage.length;} else gc.style.display='none';
+  const gc = document.getElementById('gc');
+  if (S.garage.length) { gc.style.display = 'inline'; gc.textContent = S.garage.length; }
+  else gc.style.display = 'none';
 }
 
 function renderGarage() {
-  const g=document.getElementById('garage-grid');
-  if(!S.garage.length) {g.innerHTML='<div style="padding:40px;text-align:center;color:var(--ink-mute);font-size:14px;grid-column:1/-1">No saved cars yet. Tap the heart on any result to save it here.</div>';return;}
-  g.innerHTML=''; S.garage.forEach((c,i)=>g.appendChild(makeCard(c,i)));
+  const g = document.getElementById('garage-grid');
+  if (!S.garage.length) {
+    g.innerHTML = '<div style="padding:40px;text-align:center;color:var(--ink-mute);font-size:14px;grid-column:1/-1">No saved cars yet.</div>';
+    return;
+  }
+  g.innerHTML = '';
+  S.garage.forEach((c, i) => g.appendChild(makeCard(c, i)));
 }
 
 // ═══════════════════ MODALS ═══════════════════
 function openModal(id) {
-  const c=[...S.results,...S.garage].find(x=>x.id===id); if(!c) return;
-  const tco=c.tco||{total:200,fuel:80,insurance:90,ved:14};
-  const fi={Petrol:'⛽',Diesel:'🛢',Hybrid:'🔋',Electric:'⚡','Mild Hybrid':'🔋',PHEV:'🔌'}[c.fuel]||'⛽';
-  const motHTML=c.mot_history?.length
-    ?c.mot_history.map(m=>`<div class="mot-entry"><div class="mot-date">${m.date}</div><div class="mot-pass">${m.result}</div><div style="font-size:11.5px;color:var(--ink-faint)">${m.mileage?.toLocaleString()||'—'} mi</div><div class="mot-adv">${m.advisories?.length?m.advisories.join(', '):'No advisories'}</div></div>`).join('')
-    :`<p style="font-size:13px;color:var(--ink-faint);font-style:italic">${c.new_or_used==='new'?'Brand new — no MOT required yet':'No MOT history available'}</p>`;
-  document.getElementById('m-img').src=c.image;
-  document.getElementById('m-body').innerHTML=`
+  const c = [...S.results, ...S.garage].find(x => x.id === id);
+  if (!c) return;
+  const tco = c.tco || { total: 200, fuel: 80, insurance: 90, ved: 14 };
+  const fi = { Petrol: '⛽', Diesel: '🛢', Hybrid: '🔋', Electric: '⚡', 'Mild Hybrid': '🔋', PHEV: '🔌' }[c.fuel] || '⛽';
+  const motHTML = c.mot_history?.length
+    ? c.mot_history.map(m => `<div class="mot-entry"><div class="mot-date">${m.date}</div><div class="mot-pass">${m.result}</div><div style="font-size:11.5px;color:var(--ink-faint)">${m.mileage?.toLocaleString() || '—'} mi</div><div class="mot-adv">${m.advisories?.length ? m.advisories.join(', ') : 'No advisories'}</div></div>`).join('')
+    : `<p style="font-size:13px;color:var(--ink-faint);font-style:italic">${c.new_or_used === 'new' ? 'Brand new — no MOT required yet' : 'No MOT history available'}</p>`;
+
+  document.getElementById('m-img').src = c.image;
+  document.getElementById('m-body').innerHTML = `
     <div class="modal-title">${c.year} ${c.make} ${c.model}</div>
-    <div class="modal-var">${c.variant} · ${c.colour} · ${c.new_or_used==='new'?'Brand new':'Used'}</div>
+    <div class="modal-var">${c.variant} · ${c.colour} · ${c.new_or_used === 'new' ? 'Brand new' : 'Used'}</div>
     <div class="modal-price">£${c.price.toLocaleString()}</div>
     <p class="modal-desc">${c.description}</p>
-    <div class="tco-box"><h4>Estimated monthly running cost</h4>
+    <div class="tco-box">
+      <h4>Estimated monthly running cost</h4>
       <div class="tco-items">
         <div class="tco-item"><div class="tco-iv">£${tco.fuel}</div><div class="tco-il">Fuel</div></div>
         <div class="tco-item"><div class="tco-iv">£${tco.insurance}</div><div class="tco-il">Insurance est.</div></div>
@@ -1163,68 +1462,277 @@ function openModal(id) {
       <div class="tco-tot"><span style="font-size:11px;color:var(--ink-mute);text-transform:uppercase;letter-spacing:.06em">Total per month</span><span class="tco-tv">~£${tco.total}/mo</span></div>
     </div>
     <div class="spec-grid">
-      <div class="spec-item"><div class="spec-lbl">Mileage</div><div class="spec-val">${c.mileage>0?c.mileage.toLocaleString()+' mi':'Brand new'}</div></div>
+      <div class="spec-item"><div class="spec-lbl">Mileage</div><div class="spec-val">${c.mileage > 0 ? c.mileage.toLocaleString() + ' mi' : 'Brand new'}</div></div>
       <div class="spec-item"><div class="spec-lbl">Fuel</div><div class="spec-val">${fi} ${c.fuel}</div></div>
       <div class="spec-item"><div class="spec-lbl">Gearbox</div><div class="spec-val">${c.transmission}</div></div>
       <div class="spec-item"><div class="spec-lbl">Insurance group</div><div class="spec-val">${c.insurance_group} / 50</div></div>
       <div class="spec-item"><div class="spec-lbl">Boot size</div><div class="spec-val">${c.boot_litres}L</div></div>
       <div class="spec-item"><div class="spec-lbl">NCAP safety</div><div class="spec-val">${'★'.repeat(c.ncap)} ${c.ncap}/5</div></div>
-      <div class="spec-item"><div class="spec-lbl">Previous owners</div><div class="spec-val">${c.owners===0?'New (0)':c.owners}</div></div>
-      <div class="spec-item"><div class="spec-lbl">Service history</div><div class="spec-val">${c.new_or_used==='new'?'N/A':c.fsh?'✓ Full':'⚠ Partial'}</div></div>
-      <div class="spec-item"><div class="spec-lbl">ULEZ</div><div class="spec-val">${c.ulez?'✓ Compliant':'✗ No'}</div></div>
-      <div class="spec-item"><div class="spec-lbl">Annual road tax</div><div class="spec-val">£${c.ved_annual||0}</div></div>
+      <div class="spec-item"><div class="spec-lbl">Previous owners</div><div class="spec-val">${c.owners === 0 ? 'New (0)' : c.owners}</div></div>
+      <div class="spec-item"><div class="spec-lbl">Service history</div><div class="spec-val">${c.new_or_used === 'new' ? 'N/A' : c.fsh ? '✓ Full' : '⚠ Partial'}</div></div>
+      <div class="spec-item"><div class="spec-lbl">ULEZ</div><div class="spec-val">${c.ulez ? '✓ Compliant' : '✗ No'}</div></div>
+      <div class="spec-item"><div class="spec-lbl">Annual road tax</div><div class="spec-val">£${c.ved_annual || 0}</div></div>
     </div>
     <div class="mot-sec"><h4>MOT History</h4>${motHTML}</div>
     <div class="modal-acts">
-      <button class="btn-det" style="flex:1;padding:11px" onclick="toggleSave(event,'${c.id}');closeModal()">${S.garage.some(g=>g.id===c.id)?'♥ Remove from garage':'♡ Save to garage'}</button>
+      <button class="btn-det" style="flex:1;padding:11px" onclick="toggleSave(event,'${c.id}');closeModal()">${S.garage.some(g => g.id === c.id) ? '♥ Remove from garage' : '♡ Save to garage'}</button>
       <a class="btn-src" href="${c.listing_url}" target="_blank" rel="noopener" style="flex:1;justify-content:center;padding:11px">View listing →</a>
     </div>`;
   document.getElementById('car-modal').classList.add('active');
 }
-
 function closeModal() { document.getElementById('car-modal').classList.remove('active'); }
 
 function openProModal() {
-  const benefits=[['∞','Unlimited Ella searches','Free: 3 per day'],['📍','Dealer location & contact','Gated in free tier'],['📊','6-month price history','Know fair pricing'],['🔧','Full MOT history','Free: last check only'],['🔔','Price drop alerts','Push notifications']];
-  document.getElementById('pro-benefits').innerHTML=benefits.map(([i,t,s])=>`<div style="display:flex;gap:11px;align-items:center;padding:11px;background:var(--cream);border:1px solid var(--hair);border-radius:var(--r)"><span style="font-size:17px;min-width:22px">${i}</span><div><div style="font-weight:600;font-size:13.5px;color:var(--ink)">${t}</div><div style="font-size:11.5px;color:var(--ink-mute)">${s}</div></div></div>`).join('');
-  // Reset button state
-  document.getElementById('stripe-btn-text').textContent = 'Start Pro · £4.99/month';
-  document.getElementById('stripe-upgrade-btn').disabled = false;
+  const benefits = [
+    ['∞', 'Unlimited Ella searches', 'Free: 3 per day'],
+    ['📍', 'Dealer location & contact', 'Gated in free tier'],
+    ['📊', '6-month price history', 'Know fair pricing'],
+    ['🔧', 'Full MOT history', 'Free: last check only'],
+    ['🔔', 'Price drop alerts', 'Push notifications'],
+  ];
+  document.getElementById('pro-benefits').innerHTML = benefits.map(([i, t, s]) => `
+    <div style="display:flex;gap:11px;align-items:center;padding:11px;background:var(--cream);border:1px solid var(--hair);border-radius:var(--r)">
+      <span style="font-size:17px;min-width:22px">${i}</span>
+      <div><div style="font-weight:600;font-size:13.5px;color:var(--ink)">${t}</div><div style="font-size:11.5px;color:var(--ink-mute)">${s}</div></div>
+    </div>`).join('');
   document.getElementById('pro-modal').classList.add('active');
 }
+
+function showUserMenu() {
+  const email = localStorage.getItem('sb_email') || '';
+  const existing = document.getElementById('user-menu');
+  if (existing) { existing.remove(); return; }
+  const menu = document.createElement('div');
+  menu.id = 'user-menu';
+  menu.style.cssText = 'position:fixed;top:60px;right:16px;background:var(--paper);border:1px solid var(--hair);border-radius:var(--r);padding:8px;min-width:210px;z-index:500;box-shadow:0 8px 24px rgba(0,0,0,.12)';
+  menu.innerHTML = `
+    <div style="padding:8px 10px 10px;border-bottom:1px solid var(--hair);margin-bottom:4px">
+      <div style="font-size:12px;color:var(--ink-mute)">${email}</div>
+      ${S.isPro ? '<div style="font-size:11px;color:var(--green);font-weight:700;margin-top:3px">⚡ Pro subscriber</div>' : '<div style="font-size:11px;color:var(--ink-faint);margin-top:3px">Free plan · 3 searches/day</div>'}
+    </div>
+    ${S.isPro
+      ? `<button onclick="openBillingPortal();document.getElementById('user-menu')?.remove()" style="width:100%;text-align:left;padding:8px 10px;background:none;border:none;font-size:13px;color:var(--ink-soft);cursor:pointer;border-radius:6px;font-family:var(--fb)">⚙ Manage subscription</button>`
+      : `<button onclick="openProModal();document.getElementById('user-menu')?.remove()" style="width:100%;text-align:left;padding:8px 10px;background:none;border:none;font-size:13px;color:var(--green);cursor:pointer;border-radius:6px;font-weight:600;font-family:var(--fb)">⚡ Upgrade to Pro</button>`
+    }
+    <button onclick="signOut();document.getElementById('user-menu')?.remove()" style="width:100%;text-align:left;padding:8px 10px;background:none;border:none;font-size:13px;color:var(--ink-soft);cursor:pointer;border-radius:6px;font-family:var(--fb)">Sign out</button>
+  `;
+  document.body.appendChild(menu);
+  setTimeout(() => {
+    document.addEventListener('click', function h(e) {
+      if (!menu.contains(e.target) && e.target.id !== 'user-avatar') {
+        menu.remove();
+        document.removeEventListener('click', h);
+      }
+    });
+  }, 100);
+}
+
 function closeProModal() { document.getElementById('pro-modal').classList.remove('active'); }
 
 // ═══════════════════ HERO ═══════════════════
-function heroSearch() { const v=document.getElementById('hero-input').value.trim(); if(!v) return; startOnboarding(v); }
-function fillHint(t) { const i=document.getElementById('hero-input'); i.value=t; autoResize(i); i.focus(); }
-function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,120)+'px'; }
+function heroSearch() {
+  const v = document.getElementById('hero-input').value.trim();
+  if (!v) return;
+  startOnboarding(v);
+}
+function fillHint(t) {
+  const i = document.getElementById('hero-input');
+  i.value = t;
+  autoResize(i);
+  i.focus();
+}
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+}
 
-// ═══════════════════ INIT ═══════════════════
-function init() {
+// ─── SUPABASE AUTH ────────────────────────────────────────────────
+const SB_URL  = 'https://bhrbrbrawrzcpuwkzwjz.supabase.co';
+const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJocmJyYnJhd3J6Y3B1d2t6d2p6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNDY3NTUsImV4cCI6MjA5MjcyMjc1NX0.17enpmTpcgUwA7EA_RvHiH4XdKNZn9yAXcNmoPZ9o-k';
+
+async function sbAuth(endpoint, body) {
+  const r = await fetch(`${SB_URL}/auth/v1/${endpoint}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'apikey': SB_ANON },
+    body: JSON.stringify(body)
+  });
+  return r.json();
+}
+
+async function signUp(email, password) {
+  return sbAuth('signup', { email, password });
+}
+
+async function signIn(email, password) {
+  return sbAuth('token?grant_type=password', { email, password });
+}
+
+async function signOut() {
+  if (!S.authToken) return;
+  await fetch(`${SB_URL}/auth/v1/logout`, {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${S.authToken}`, 'apikey': SB_ANON }
+  });
+  S.authToken = null; S.userId = null; S.userEmail = null; S.isPro = false;
+  localStorage.removeItem('sb_token');
+  localStorage.removeItem('sb_uid');
+  localStorage.removeItem('sb_email');
   updateAuthUI();
-  updateGCBadge();
-  // Load garage from DB if logged in, else localStorage
+}
+
+function saveAuthSession(data) {
+  S.authToken  = data.access_token;
+  S.userId     = data.user?.id;
+  S.userEmail  = data.user?.email;
+  localStorage.setItem('sb_token',  S.authToken);
+  localStorage.setItem('sb_uid',    S.userId);
+  localStorage.setItem('sb_email',  S.userEmail);
+}
+
+function updateAuthUI() {
+  const avatar = document.getElementById('user-avatar');
+  if (!avatar) return;
   if (S.authToken) {
-    loadGarageFromDB();
-    checkProStatus();
+    const initial = (S.userEmail || 'U')[0].toUpperCase();
+    avatar.textContent = initial;
+    avatar.title = S.userEmail;
+    avatar.onclick = () => { if (confirm('Sign out?')) signOut(); };
   } else {
-    S.garage = JSON.parse(localStorage.getItem('cg')||'[]');
-    updateGCBadge();
-  }
-  // Check Stripe return
-  const p = new URLSearchParams(window.location.search);
-  if (p.get('upgraded')==='true') {
-    S.isPro=true;
-    window.history.replaceState({},'',window.location.pathname);
-    setTimeout(()=>showApp(), 300);
-    setTimeout(()=>addEllaMsg("Welcome to Carella Pro! ⚡ You now have unlimited searches, full MOT history, and price drop alerts. Let's find your perfect car."), 1200);
+    avatar.textContent = '?';
+    avatar.title = 'Sign in';
+    avatar.onclick = () => showAuthModal();
   }
 }
 
-init();
+// Auth modal
+let authMode = 'signin'; // 'signin' | 'signup'
+let authPendingAction = null;
+
+function showAuthModal(pendingAction) {
+  authPendingAction = pendingAction || null;
+  document.getElementById('auth-modal').classList.add('active');
+  document.getElementById('auth-email').focus();
+}
+function closeAuthModal() {
+  document.getElementById('auth-modal').classList.remove('active');
+  document.getElementById('auth-error').style.display = 'none';
+  document.getElementById('auth-email').value = '';
+  document.getElementById('auth-password').value = '';
+  document.getElementById('auth-btn-text').textContent = authMode === 'signin' ? 'Sign in' : 'Create account';
+}
+function toggleAuthMode() {
+  authMode = authMode === 'signin' ? 'signup' : 'signin';
+  document.getElementById('auth-title').textContent    = authMode === 'signin' ? 'Sign in' : 'Create account';
+  document.getElementById('auth-subtitle').textContent = authMode === 'signin' ? 'Welcome back to Carella.' : 'Free forever. No credit card needed.';
+  document.getElementById('auth-btn-text').textContent = authMode === 'signin' ? 'Sign in' : 'Create account';
+  document.getElementById('auth-toggle-text').textContent = authMode === 'signin' ? "Don't have an account?" : 'Already have an account?';
+  document.getElementById('auth-toggle-link').textContent = authMode === 'signin' ? 'Sign up free' : 'Sign in';
+  document.getElementById('auth-error').style.display = 'none';
+}
+
+async function submitAuth() {
+  const email    = document.getElementById('auth-email').value.trim();
+  const password = document.getElementById('auth-password').value;
+  const errEl    = document.getElementById('auth-error');
+  const btnTxt   = document.getElementById('auth-btn-text');
+  if (!email || !password) { errEl.textContent = 'Please enter email and password'; errEl.style.display = 'block'; return; }
+  if (password.length < 6)  { errEl.textContent = 'Password must be at least 6 characters'; errEl.style.display = 'block'; return; }
+  btnTxt.textContent = authMode === 'signin' ? 'Signing in…' : 'Creating account…';
+  errEl.style.display = 'none';
+  try {
+    const data = authMode === 'signin' ? await signIn(email, password) : await signUp(email, password);
+    if (data.access_token) {
+      saveAuthSession(data);
+      closeAuthModal();
+      updateAuthUI();
+      await checkProStatus();
+      // Run pending action
+      if (authPendingAction === 'upgrade') startStripeCheckout();
+      else if (authPendingAction === 'search') document.getElementById('chat-input')?.focus();
+    } else {
+      const msg = data.error_description || data.msg || data.message || 'Something went wrong';
+      errEl.textContent = msg;
+      errEl.style.display = 'block';
+      btnTxt.textContent = authMode === 'signin' ? 'Sign in' : 'Create account';
+    }
+  } catch(e) {
+    errEl.textContent = 'Network error — try again';
+    errEl.style.display = 'block';
+    btnTxt.textContent = authMode === 'signin' ? 'Sign in' : 'Create account';
+  }
+}
+
+// ─── STRIPE ───────────────────────────────────────────────────────
+async function startStripeCheckout() {
+  if (!S.authToken) { showAuthModal('upgrade'); return; }
+  const btn = document.getElementById('stripe-upgrade-btn');
+  const txt = document.getElementById('stripe-btn-text');
+  if (txt) txt.textContent = 'Opening checkout…';
+  if (btn) btn.disabled = true;
+  try {
+    const resp = await fetch('/api/stripe/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${S.authToken}` },
+      body: JSON.stringify({})
+    });
+    const data = await resp.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      if (txt) txt.textContent = data.error || 'Try again';
+      if (btn) btn.disabled = false;
+    }
+  } catch(e) {
+    if (txt) txt.textContent = 'Try again';
+    if (btn) btn.disabled = false;
+  }
+}
+
+async function openBillingPortal() {
+  if (!S.authToken) return;
+  try {
+    const resp = await fetch('/api/stripe/portal', {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${S.authToken}` }
+    });
+    const data = await resp.json();
+    if (data.url) window.open(data.url, '_blank');
+  } catch(e) { console.error(e); }
+}
+
+async function checkProStatus() {
+  if (!S.authToken) return;
+  try {
+    const resp = await fetch('/api/pro/status', {
+      headers: { 'Authorization': `Bearer ${S.authToken}` }
+    });
+    const data = await resp.json();
+    if (data.is_pro) {
+      S.isPro = true;
+      const si = document.getElementById('ses-info');
+      if (si) si.innerHTML = '⚡ Pro · Unlimited · <a onclick="openBillingPortal()" style="cursor:pointer">Manage</a>';
+    }
+  } catch(e) {}
+}
+
+// On load: restore session + check for Stripe return
+(async function init() {
+  updateAuthUI();
+  if (S.authToken) await checkProStatus();
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('upgraded') === 'true') {
+    S.isPro = true;
+    window.history.replaceState({}, '', window.location.pathname);
+    // Will show message once app loads
+    S.pendingUpgradeMsg = true;
+  }
+  if (params.get('upgrade') === 'cancelled') {
+    window.history.replaceState({}, '', window.location.pathname);
+  }
+})();
+
+updateGCBadge();
 </script>
-
-
 
 <!-- ═══════ AUTH MODAL ═══════ -->
 <div class="modal-ov" id="auth-modal" onclick="if(event.target===this)closeAuthModal()">
@@ -1241,7 +1749,7 @@ init();
       <input class="ob-input" id="auth-email" type="email" placeholder="Email address" style="margin-bottom:10px" autocomplete="email">
       <input class="ob-input" id="auth-password" type="password" placeholder="Password (min 6 chars)" style="margin-bottom:18px" autocomplete="current-password" onkeydown="if(event.key==='Enter')submitAuth()">
 
-      <button class="signup-btn primary" style="width:100%;padding:13px;font-size:14px;border-radius:var(--r);justify-content:center" onclick="submitAuth()">
+      <button class="signup-btn primary" id="auth-submit-btn" style="width:100%;padding:13px;font-size:14px;border-radius:var(--r);justify-content:center" onclick="submitAuth()">
         <span id="auth-btn-text">Sign in</span>
       </button>
 
@@ -1260,6 +1768,5 @@ init();
     </div>
   </div>
 </div>
-
 </body>
 </html>

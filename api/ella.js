@@ -669,6 +669,7 @@ module.exports = async function handler(req, res) {
       inventory: UK_CARS.length,
       ella: ANTHROPIC_KEY ? 'live' : 'demo',
       supabase: SUPABASE_KEY ? 'connected' : 'not configured',
+      stripe: STRIPE_SECRET && STRIPE_PRICE_ID ? 'connected' : 'not configured',
       apify: APIFY_TOKEN ? 'connected' : 'not configured',
       stripe: STRIPE_SECRET ? 'connected' : 'not configured',
     });
@@ -829,6 +830,15 @@ module.exports = async function handler(req, res) {
     const profile = await getProfile(user.id);
     const isPro = profile?.is_pro && (!profile?.pro_expires_at || new Date(profile.pro_expires_at) > new Date());
     return res.json({ is_pro: isPro, expires_at: profile?.pro_expires_at || null });
+  }
+
+    // ── Garage: delete saved car ────────────────────────────────────
+  if (url.startsWith('/api/garage/') && req.method === 'DELETE') {
+    const user = await getUserFromToken(req.headers.authorization);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
+    const listingId = url.split('/api/garage/')[1];
+    await sbFetch(`/saved_cars?user_id=eq.${user.id}&listing_id=eq.${encodeURIComponent(listingId)}`, 'DELETE');
+    return res.json({ success: true });
   }
 
     return res.status(404).json({ error: 'Not found' });
