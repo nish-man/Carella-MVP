@@ -5,6 +5,10 @@ const SUPABASE_URL    = process.env.SUPABASE_URL    || 'https://bhrbrbrawrzcpuwk
 const SUPABASE_KEY    = process.env.SUPABASE_SERVICE_KEY;
 const APIFY_TOKEN     = process.env.APIFY_TOKEN;
 const ANTHROPIC_KEY   = process.env.ANTHROPIC_API_KEY;
+const STRIPE_SECRET   = process.env.STRIPE_SECRET_KEY;
+const STRIPE_WEBHOOK  = process.env.STRIPE_WEBHOOK_SECRET;
+const STRIPE_PRICE_ID = process.env.STRIPE_PRICE_ID;
+const APP_URL         = process.env.APP_URL || 'https://carella-mvp.vercel.app';
 
 const MAX_FREE_SEARCHES = 3;
 
@@ -545,6 +549,110 @@ async function getUserFromToken(authHeader) {
   } catch { return null; }
 }
 
+
+// ─── STRIPE HELPERS ───────────────────────────────────────────────
+async function stripeRequest(path, method = 'GET', body = null) {
+  if (!STRIPE_SECRET) return null;
+  const opts = {
+    method,
+    headers: {
+      'Authorization': `Bearer ${STRIPE_SECRET}`,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }
+  };
+  if (body) opts.body = new URLSearchParams(body).toString();
+  try {
+    const r = await fetch(`https://api.stripe.com/v1${path}`, opts);
+    return await r.json();
+  } catch (e) {
+    console.error('Stripe error:', e.message);
+    return null;
+  }
+}
+
+async function createCheckoutSession(userId, userEmail) {
+  const session = await stripeRequest('/checkout/sessions', 'POST', {
+    'payment_method_types[]': 'card',
+    'line_items[0][price]': STRIPE_PRICE_ID,
+    'line_items[0][quantity]': '1',
+    mode: 'subscription',
+    success_url: `${APP_URL}?upgraded=true&session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${APP_URL}?upgrade=cancelled`,
+    customer_email: userEmail,
+    'metadata[user_id]': userId,
+    'subscription_data[metadata][user_id]': userId,
+  });
+  return session;
+}
+
+async function createBillingPortal(stripeCustomerId) {
+  const session = await stripeRequest('/billing_portal/sessions', 'POST', {
+    customer: stripeCustomerId,
+    return_url: APP_URL,
+  });
+  return session;
+}
+
+async function verifyStripeWebhook(rawBody, signature) {
+  if (!STRIPE_WEBHOOK) return null;
+  // Stripe webhook signature verification
+  // Uses HMAC-SHA256
+  const crypto = require('crypto');
+  const parts = signature.split(',');
+  const timestamp = parts.find(p => p.startsWith('t=')).split('=')[1];
+  const sig = parts.find(p => p.startsWith('v1=')).split('=')[1];
+  const payload = `${timestamp}.${rawBody}`;
+  const expected = crypto.createHmac('sha256', STRIPE_WEBHOOK).update(payload).digest('hex');
+  if (expected !== sig) return null;
+  // Tolerance: 5 minutes
+  if (Math.abs(Date.now() / 1000 - parseInt(timestamp)) > 300) return null;
+  try { return JSON.parse(rawBody); } catch { return null; }
+}
+
+async function handleStripeWebhook(event) {
+  const type = event.type;
+  console.log('Stripe webhook:', type);
+
+  if (type === 'checkout.session.completed') {
+    const session = event.data.object;
+    const userId = session.metadata?.user_id;
+    const customerId = session.customer;
+    const subId = session.subscription;
+    if (userId) {
+      await upsertProfile(userId, {
+        is_pro: true,
+        stripe_customer_id: customerId,
+        stripe_subscription_id: subId,
+        pro_expires_at: new Date(Date.now() + 31 * 24 * 60 * 60 * 1000).toISOString(),
+      });
+      console.log('Pro activated for user:', userId);
+    }
+  }
+
+  if (type === 'invoice.payment_succeeded') {
+    const invoice = event.data.object;
+    const subId = invoice.subscription;
+    // Find user by subscription ID and extend pro
+    const profiles = await sbFetch(`/profiles?stripe_subscription_id=eq.${subId}`);
+    if (profiles?.[0]) {
+      await upsertProfile(profiles[0].id, {
+        is_pro: true,
+        pro_expires_at: new Date(Date.now() + 31 * 24 * 60 * 60 * 1000).toISOString(),
+      });
+    }
+  }
+
+  if (type === 'customer.subscription.deleted' || type === 'invoice.payment_failed') {
+    const obj = event.data.object;
+    const customerId = obj.customer;
+    const profiles = await sbFetch(`/profiles?stripe_customer_id=eq.${customerId}`);
+    if (profiles?.[0]) {
+      await upsertProfile(profiles[0].id, { is_pro: false });
+      console.log('Pro cancelled for customer:', customerId);
+    }
+  }
+}
+
 // ─── MAIN HANDLER ─────────────────────────────────────────────────
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -562,6 +670,7 @@ module.exports = async function handler(req, res) {
       ella: ANTHROPIC_KEY ? 'live' : 'demo',
       supabase: SUPABASE_KEY ? 'connected' : 'not configured',
       apify: APIFY_TOKEN ? 'connected' : 'not configured',
+      stripe: STRIPE_SECRET ? 'connected' : 'not configured',
     });
   }
 
@@ -667,5 +776,60 @@ module.exports = async function handler(req, res) {
     }
   }
 
-  return res.status(404).json({ error: 'Not found' });
+  // ── Stripe: create checkout session ────────────────────────────
+  if (url === '/api/stripe/checkout' && req.method === 'POST') {
+    if (!STRIPE_SECRET || !STRIPE_PRICE_ID) {
+      return res.status(503).json({ error: 'Stripe not configured' });
+    }
+    const user = await getUserFromToken(req.headers.authorization);
+    if (!user) return res.status(401).json({ error: 'Login required to upgrade' });
+    const profile = await getProfile(user.id);
+    const session = await createCheckoutSession(user.id, user.email);
+    if (!session?.url) return res.status(500).json({ error: 'Could not create checkout session' });
+    return res.json({ url: session.url });
+  }
+
+  // ── Stripe: billing portal (manage subscription) ─────────────
+  if (url === '/api/stripe/portal' && req.method === 'POST') {
+    if (!STRIPE_SECRET) return res.status(503).json({ error: 'Stripe not configured' });
+    const user = await getUserFromToken(req.headers.authorization);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
+    const profile = await getProfile(user.id);
+    if (!profile?.stripe_customer_id) return res.status(400).json({ error: 'No subscription found' });
+    const portal = await createBillingPortal(profile.stripe_customer_id);
+    if (!portal?.url) return res.status(500).json({ error: 'Could not open billing portal' });
+    return res.json({ url: portal.url });
+  }
+
+  // ── Stripe: webhook ──────────────────────────────────────────
+  if (url === '/api/stripe/webhook' && req.method === 'POST') {
+    const sig = req.headers['stripe-signature'];
+    // Get raw body (Vercel provides it as buffer via req.body when content-type is not json)
+    let rawBody;
+    if (Buffer.isBuffer(req.body)) {
+      rawBody = req.body.toString('utf8');
+    } else if (typeof req.body === 'string') {
+      rawBody = req.body;
+    } else {
+      rawBody = JSON.stringify(req.body);
+    }
+    const event = await verifyStripeWebhook(rawBody, sig);
+    if (!event) {
+      console.error('Invalid Stripe webhook signature');
+      return res.status(400).json({ error: 'Invalid signature' });
+    }
+    await handleStripeWebhook(event);
+    return res.json({ received: true });
+  }
+
+  // ── Pro status check ─────────────────────────────────────────
+  if (url === '/api/pro/status' && req.method === 'GET') {
+    const user = await getUserFromToken(req.headers.authorization);
+    if (!user) return res.json({ is_pro: false });
+    const profile = await getProfile(user.id);
+    const isPro = profile?.is_pro && (!profile?.pro_expires_at || new Date(profile.pro_expires_at) > new Date());
+    return res.json({ is_pro: isPro, expires_at: profile?.pro_expires_at || null });
+  }
+
+    return res.status(404).json({ error: 'Not found' });
 };
