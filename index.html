@@ -363,11 +363,7 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
       <span class="brand-mark">Car<em>ella</em></span>
       <span class="brand-tag">Beta</span>
     </a>
-    <!-- Auth-aware right side — updated by updateLandingNav() on init -->
-    <div id="landing-nav-right" style="display:flex;align-items:center;gap:10px">
-      <button class="signup-btn" onclick="showAuthModal('signin')" id="landing-signin-btn">Sign in</button>
-      <button class="signup-btn primary" onclick="showAuthModal('signup')" id="landing-signup-btn">Get early access</button>
-    </div>
+    <div id="landing-nav-right"></div>
   </nav>
 
   <div class="hero">
@@ -616,14 +612,12 @@ async function signOut() {
 }
 
 function saveAuthSession(data) {
-  // Called after updateLandingNav is defined, so safe to call here
   S.authToken = data.access_token;
   S.userId    = data.user?.id;
   localStorage.setItem('sb_token',  data.access_token);
   localStorage.setItem('sb_uid',    data.user?.id || '');
   localStorage.setItem('sb_email',  data.user?.email || '');
   updateAuthUI();
-  updateLandingNav();
   checkProStatus();
   loadGarageFromDB();
 }
@@ -1214,39 +1208,58 @@ function fillHint(t) { const i=document.getElementById('hero-input'); i.value=t;
 function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,120)+'px'; }
 
 // ═══════════════════ INIT ═══════════════════
+function init() {
+  updateAuthUI();
+  updateLandingNav();
+  updateGCBadge();
+  // Load garage from DB if logged in, else localStorage
+  if (S.authToken) {
+    loadGarageFromDB();
+    checkProStatus();
+  } else {
+    S.garage = JSON.parse(localStorage.getItem('cg')||'[]');
+    updateGCBadge();
+  }
+  // Check Stripe return
+  const p = new URLSearchParams(window.location.search);
+  if (p.get('upgraded')==='true') {
+    S.isPro=true;
+    window.history.replaceState({},'',window.location.pathname);
+    setTimeout(()=>showApp(), 300);
+    setTimeout(()=>addEllaMsg("Welcome to Carella Pro! ⚡ You now have unlimited searches, full MOT history, and price drop alerts. Let's find your perfect car."), 1200);
+  }
+}
 
-// ─── LANDING NAV AUTH STATE ──────────────────────────────────────────
+// ─── AUTH-AWARE LANDING NAV ───────────────────────────────────────────
 function updateLandingNav() {
   const right = document.getElementById('landing-nav-right');
   if (!right) return;
   const email = localStorage.getItem('sb_email') || '';
-  const initial = email ? email[0].toUpperCase() : '?';
+  right.innerHTML = '';
   if (S.authToken && email) {
-    right.innerHTML = '';
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'display:flex;align-items:center;gap:10px';
     const av = document.createElement('div');
     av.style.cssText = 'width:34px;height:34px;background:var(--green);color:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 2px 8px rgba(31,110,85,.25)';
-    av.textContent = initial;
+    av.textContent = email[0].toUpperCase();
     av.title = email;
     av.onclick = showLandingUserMenu;
     const btn = document.createElement('button');
     btn.className = 'signup-btn primary';
     btn.textContent = 'Open Ella →';
     btn.onclick = startOnboarding;
-    const wrap = document.createElement('div');
-    wrap.style.cssText = 'display:flex;align-items:center;gap:10px';
     wrap.appendChild(av);
     wrap.appendChild(btn);
     right.appendChild(wrap);
   } else {
-    right.innerHTML = '';
     const si = document.createElement('button');
     si.className = 'signup-btn';
     si.textContent = 'Sign in';
     si.onclick = function() { showAuthModal('signin'); };
     const su = document.createElement('button');
     su.className = 'signup-btn primary';
-    su.textContent = 'Get early access';
     su.style.marginLeft = '8px';
+    su.textContent = 'Get early access';
     su.onclick = function() { showAuthModal('signup'); };
     right.appendChild(si);
     right.appendChild(su);
@@ -1255,57 +1268,79 @@ function updateLandingNav() {
 
 function showLandingUserMenu() {
   const email = localStorage.getItem('sb_email') || '';
-  const existing = document.getElementById('landing-user-menu');
-  if (existing) { existing.remove(); return; }
-
+  const ex = document.getElementById('landing-user-menu');
+  if (ex) { ex.remove(); return; }
   const menu = document.createElement('div');
   menu.id = 'landing-user-menu';
   menu.style.cssText = 'position:fixed;top:64px;right:16px;background:var(--paper);border:1px solid var(--hair);border-radius:var(--r);padding:8px;min-width:220px;z-index:500;box-shadow:0 8px 24px rgba(0,0,0,.12)';
-
   // Header
   const hdr = document.createElement('div');
   hdr.style.cssText = 'padding:10px 12px;border-bottom:1px solid var(--hair);margin-bottom:4px';
-  hdr.innerHTML = '<div style="font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">Signed in as</div><div style="font-size:13px;font-weight:600;color:var(--ink)">' + email + '</div>' + (S.isPro ? '<div style="font-size:11px;color:var(--green);font-weight:700;margin-top:4px">⚡ Pro subscriber</div>' : '<div style="font-size:11px;color:var(--ink-faint);margin-top:3px">Free · 3 searches/day</div>');
+  hdr.innerHTML = '<div style="font-size:11px;color:var(--ink-faint);margin-bottom:2px">Signed in as</div><div style="font-size:13px;font-weight:600">' + email + '</div>' + (S.isPro ? '<div style="font-size:11px;color:var(--green);font-weight:700;margin-top:3px">⚡ Pro</div>' : '<div style="font-size:11px;color:var(--ink-faint);margin-top:2px">Free · 3 searches/day</div>');
   menu.appendChild(hdr);
-
-  // Open Ella button
-  const openBtn = document.createElement('button');
-  openBtn.style.cssText = 'width:100%;text-align:left;padding:9px 12px;background:none;border:none;font-size:13px;color:var(--ink);cursor:pointer;border-radius:6px;font-family:var(--fb);font-weight:500';
-  openBtn.textContent = '🔍 Open Ella';
-  openBtn.onclick = function() { startOnboarding(); menu.remove(); };
-  menu.appendChild(openBtn);
-
-  // Pro / manage
-  if (S.isPro) {
-    const mngBtn = document.createElement('button');
-    mngBtn.style.cssText = 'width:100%;text-align:left;padding:9px 12px;background:none;border:none;font-size:13px;color:var(--ink-soft);cursor:pointer;border-radius:6px;font-family:var(--fb)';
-    mngBtn.textContent = '⚙ Manage subscription';
-    mngBtn.onclick = function() { openBillingPortal(); menu.remove(); };
-    menu.appendChild(mngBtn);
-  } else {
-    const upBtn = document.createElement('button');
-    upBtn.style.cssText = 'width:100%;text-align:left;padding:9px 12px;background:none;border:none;font-size:13px;color:var(--green);cursor:pointer;border-radius:6px;font-weight:600;font-family:var(--fb)';
-    upBtn.textContent = '⚡ Upgrade to Pro';
-    upBtn.onclick = function() { openProModal(); menu.remove(); };
-    menu.appendChild(upBtn);
+  function menuBtn(text, color, fn) {
+    const b = document.createElement('button');
+    b.style.cssText = 'width:100%;text-align:left;padding:9px 12px;background:none;border:none;font-size:13px;cursor:pointer;border-radius:6px;font-family:var(--fb);color:' + color;
+    b.textContent = text;
+    b.onclick = function() { fn(); menu.remove(); };
+    return b;
   }
-
-  // Sign out
-  const divider = document.createElement('div');
-  divider.style.cssText = 'border-top:1px solid var(--hair);margin-top:4px;padding-top:4px';
-  const signOutBtn = document.createElement('button');
-  signOutBtn.style.cssText = 'width:100%;text-align:left;padding:9px 12px;background:none;border:none;font-size:13px;color:var(--ink-mute);cursor:pointer;border-radius:6px;font-family:var(--fb)';
-  signOutBtn.textContent = 'Sign out';
-  signOutBtn.onclick = function() { signOut(); menu.remove(); updateLandingNav(); };
-  divider.appendChild(signOutBtn);
-  menu.appendChild(divider);
-
+  menu.appendChild(menuBtn('🔍 Open Ella', 'var(--ink)', startOnboarding));
+  menu.appendChild(menuBtn(S.isPro ? '⚙ Manage subscription' : '⚡ Upgrade to Pro', S.isPro ? 'var(--ink-soft)' : 'var(--green)', S.isPro ? openBillingPortal : openProModal));
+  const sep = document.createElement('div');
+  sep.style.cssText = 'border-top:1px solid var(--hair);margin-top:4px;padding-top:4px';
+  sep.appendChild(menuBtn('Sign out', 'var(--ink-mute)', function() { signOut(); updateLandingNav(); }));
+  menu.appendChild(sep);
   document.body.appendChild(menu);
   setTimeout(function() {
-    document.addEventListener('click', function h(e) {
-      if (!menu.contains(e.target) && !e.target.closest('[onclick*="showLandingUserMenu"]')) {
-        menu.remove(); document.removeEventListener('click', h);
+    document.addEventListener('click', function close(e) {
+      if (!menu.contains(e.target) && e.target !== document.querySelector('[onclick*=showLandingUserMenu]')) {
+        menu.remove(); document.removeEventListener('click', close);
       }
     });
   }, 100);
 }
+
+
+init();
+</script>
+
+
+
+<!-- ═══════ AUTH MODAL ═══════ -->
+<div class="modal-ov" id="auth-modal" onclick="if(event.target===this)closeAuthModal()">
+  <div class="modal" style="max-width:400px">
+    <button class="mcl" onclick="closeAuthModal()">✕</button>
+    <div style="padding:36px 28px 32px">
+      <div style="font-family:var(--fd);font-size:26px;font-weight:500;letter-spacing:-.02em;margin-bottom:6px">
+        <em id="auth-title" style="font-style:italic;color:var(--green)">Sign in</em> to Carella
+      </div>
+      <p id="auth-subtitle" style="color:var(--ink-mute);font-size:13px;margin-bottom:22px;line-height:1.5">Welcome back. Your profile and garage are waiting.</p>
+
+      <div id="auth-error" style="display:none;background:#fff0f0;border:1px solid #fca5a5;border-radius:var(--r-sm);padding:10px 13px;font-size:13px;color:#dc2626;margin-bottom:14px"></div>
+
+      <input class="ob-input" id="auth-email" type="email" placeholder="Email address" style="margin-bottom:10px" autocomplete="email">
+      <input class="ob-input" id="auth-password" type="password" placeholder="Password (min 6 chars)" style="margin-bottom:18px" autocomplete="current-password" onkeydown="if(event.key==='Enter')submitAuth()">
+
+      <button class="signup-btn primary" style="width:100%;padding:13px;font-size:14px;border-radius:var(--r);justify-content:center" id="auth-submit-btn" onclick="submitAuth()">
+        <span id="auth-btn-text">Sign in</span>
+      </button>
+
+      <div style="text-align:center;margin-top:16px;font-size:13px;color:var(--ink-mute)">
+        <span id="auth-toggle-text">Don't have an account?</span>
+        <a style="color:var(--green);cursor:pointer;font-weight:600;margin-left:5px" onclick="toggleAuthMode()" id="auth-toggle-link">Sign up free</a>
+      </div>
+
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--hair);text-align:center">
+        <div style="font-size:11px;color:var(--ink-faint);display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
+          <span>✓ Free forever</span>
+          <span>✓ No credit card</span>
+          <span>✓ GDPR compliant</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
